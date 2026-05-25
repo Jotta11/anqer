@@ -1,7 +1,9 @@
 "use client";
 
+import { useRef } from "react";
 import { Circle, Square, Triangle } from "lucide-react";
 import { site } from "@/content/site";
+import HeroMotion from "@/components/motion/HeroMotion";
 
 const iconMap = {
   circle: Circle,
@@ -9,79 +11,74 @@ const iconMap = {
   triangle: Triangle,
 } as const;
 
+/**
+ * Hero — estrutura espelhada do Quantara (sign-quantara.webflow.io):
+ *
+ *   section#hero (main-section overflow)
+ *   ├── wrapper-overflow         ← container central, z=10
+ *   │   └── wrapper-hero
+ *   │       ├── wrapper-text-hero
+ *   │       │   └── block-text-hero
+ *   │       │       ├── wrapper-sub-title-hero  ← linha pequena
+ *   │       │       └── text-hero               ← headline grande
+ *   │       └── wrapper-content-hero
+ *   │           └── scroll-indicator           ← Lottie no Quantara, CSS aqui
+ *   └── bg-animation-hero        ← absolute inset-0, z=0
+ *       ├── block-content-hero.v1  (top, bottom-left aligned)
+ *       │   └── wrapper-subcontent-hero.v1  → ícone + label scramble VISÃO
+ *       ├── block-content-hero.v2  (middle, right aligned)
+ *       │   └── wrapper-subcontent-hero.v2  → ícone + label scramble PRECISÃO
+ *       └── block-content-hero.v3  (bottom, top-center aligned)
+ *           └── wrapper-subcontent-hero.v3  → ícone + label scramble RIGOR
+ */
 export default function Hero() {
   const { hero } = site;
+  const scopeRef = useRef<HTMLElement>(null);
+
   return (
     <section
-      id="top"
-      data-hero
-      className="relative min-h-screen w-full overflow-hidden bg-almost-black pt-32 md:pt-40"
+      id="hero"
+      ref={scopeRef}
+      className="main-section overflow"
     >
-      {/* Orbits (placeholder estático — animação na Etapa 2) */}
-      <div
-        aria-hidden
-        data-hero-orbits
-        className="pointer-events-none absolute inset-0 flex items-center justify-center"
-      >
-        <div
-          className="relative aspect-square w-[140vw] max-w-none md:w-[120vw]"
-          style={{ marginLeft: "var(--overflow-orbit)" }}
-        >
-          {[0, 1, 2, 3].map((i) => (
-            <div
-              key={i}
-              data-hero-orbit
-              data-orbit-index={i}
-              className="absolute inset-0 rounded-full border border-white/[0.06]"
-              style={{
-                transform: `scale(${1 - i * 0.18})`,
-              }}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Top meta bar (location / contact) */}
-      <div className="container-fluid relative z-10 flex items-start justify-between text-xs">
-        <div>
-          <p className="eyebrow mb-1">{hero.location.label}</p>
-          <p className="text-light-gray">{hero.location.value}</p>
-        </div>
-        <div className="text-right">
-          <p className="eyebrow mb-1">{hero.contact.label}</p>
-          <p className="text-light-gray">{hero.contact.value}</p>
-        </div>
-      </div>
-
-      {/* Headline */}
-      <div className="container-fluid relative z-10 mt-16 md:mt-24">
-        <h1 className="text-balance" data-hero-headline>
-          <span className="block">{hero.headline_line1}</span>
-          <span className="block text-gray">{hero.headline_line2}</span>
-        </h1>
-        <p className="mt-6 max-w-xl text-base text-light-gray md:text-lg">
-          {hero.subline}
-        </p>
-      </div>
-
-      {/* Principles row (scramble labels — placeholder) */}
-      <div className="container-fluid relative z-10 mt-20 flex flex-wrap items-center gap-6 pb-16 md:gap-12 md:pb-24">
-        {hero.principles.map((p) => {
+      {/* Background (Anim 1 parallax target) + 3 corner subcontent blocks */}
+      <div className="bg-animation-hero">
+        {hero.principles.map((p, i) => {
           const Icon = iconMap[p.icon as keyof typeof iconMap];
+          const v = (i + 1) as 1 | 2 | 3;
           return (
-            <div
-              key={p.label}
-              data-hero-principle
-              className="flex items-center gap-3"
-            >
-              <Icon className="h-4 w-4 text-blue" strokeWidth={1.5} />
-              <span className="eyebrow text-white" data-scramble-text>
-                {p.label}
-              </span>
+            <div key={p.label} className={`block-content-hero v${v}`}>
+              <div className={`wrapper-subcontent-hero v${v}`}>
+                <div className="image-icon-hero">
+                  <Icon className="h-full w-full" strokeWidth={1} />
+                </div>
+                <div className="text-subcontent-hero">
+                  <div className={`scramble v${v}`}>{p.label}</div>
+                </div>
+              </div>
             </div>
           );
         })}
       </div>
+
+      {/* Central content (text + scroll indicator) */}
+      <div className="wrapper-overflow">
+        <div className="wrapper-hero">
+          <div className="wrapper-text-hero">
+            <div className="block-text-hero">
+              <div className="wrapper-sub-title-hero">
+                {hero.headline_line1}
+              </div>
+              <h1 className="text-hero">{hero.headline_line2}</h1>
+            </div>
+          </div>
+          <div className="wrapper-content-hero" aria-hidden>
+            <div className="scroll-indicator" />
+          </div>
+        </div>
+      </div>
+
+      <HeroMotion scope={scopeRef} />
     </section>
   );
 }

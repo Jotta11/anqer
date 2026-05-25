@@ -37,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className={interTight.variable}>
+    <html lang="pt-BR" className={`${interTight.variable} js-loading`}>
       <body className="bg-almost-black text-white antialiased">
         <LenisProvider>{children}</LenisProvider>
         <script

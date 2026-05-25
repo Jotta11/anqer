@@ -1,10 +1,16 @@
 # ANIMATION SPECS — Anqer Technology
 
-**Fonte**: extração técnica do template Webflow Quantara (sign-quantara.webflow.io) via DevTools.
+> ## ⚠️ AVISO DE PRECISÃO — 2026-05-25
+>
+> A extração original deste documento contém **erros materiais** quando comparada com o HTML/CSS/JS reais do Quantara baixados em 2026-05-25. Use a seção [CORREÇÕES VERIFICADAS](#correções-verificadas-via-source-2026-05-25) no fim deste arquivo como fonte da verdade. As animações abaixo (Anim 1–19) permanecem como **referência histórica** mas devem ser confrontadas com a seção de correções.
+>
+> Principais erros: nomes de classe (ex.: `.image-orbit` está em **Features**, não no Hero), comportamento do botão secundário (é só font-weight), e as classes internas dos círculos do Features. Detalhes no fim do arquivo.
 
-**Fonte da verdade**: este documento. Não substituir valores numéricos por aproximações. Cada `duration` em ms, cada `easing`, cada `keyframe` foi extraído do código de produção.
+**Fonte**: extração técnica do template Webflow Quantara (sign-quantara.webflow.io) via DevTools (extração inicial) + curl + análise direta do CSS/HTML (correções).
 
-**Stack de motion**: GSAP 3.15 + ScrollTrigger + SplitText + ScrambleTextPlugin. Lenis para smooth scroll global.
+**Fonte da verdade**: a seção de correções no fim do documento. Onde houver conflito, a seção de correções vence.
+
+**Stack de motion**: GSAP 3.15 + ScrollTrigger + SplitText + ScrambleTextPlugin (a Quantara só carrega gsap.min.js, ScrollTrigger.min.js e SplitText.min.js — ScrambleText pode estar bundled ou no chunk Webflow). Lenis para smooth scroll global.
 
 ---
 
@@ -623,3 +629,193 @@ Antes de considerar uma animação "pronta", validar todos os campos:
 | linear / none        | `none` (ou `linear`)              |
 | [0.22, 1, 0.36, 1]   | `power4.out` (aproximado) ou `"cubic-bezier(0.22, 1, 0.36, 1)"` |
 | [0.4, 0, 0.2, 1]     | `"cubic-bezier(0.4, 0, 0.2, 1)"` |
+---
+
+## CORREÇÕES VERIFICADAS VIA SOURCE (2026-05-25)
+
+Extraídas via `curl` direto do Quantara em produção. Onde conflitar com qualquer seção acima, **estas correções vencem**.
+
+### C1 — Hero não tem orbits
+
+`.image-orbit.v1`...`.v4` NÃO estão no `<section id="hero">`. Estão dentro de `.content-feature` (seção `#lab`, ou seja, o que chamamos de "Features"). Cada orbit é um `<img>` PNG (`Orbit%201.png`, etc) com `transform: rotateZ(Xdeg)` inline. Tamanhos:
+
+```css
+.image-orbit.v1 { width: 30vw; height: 30vw; margin-top: 2vw; margin-left: 2vw; }
+.image-orbit.v2 { width: 30vw; height: 30vw; margin-bottom: 2vw; }
+.image-orbit.v3 { width: 50vw; height: 50vw; }
+.image-orbit.v4 { width: 70vw; height: 70vw; }
+```
+
+Brightness aplicado inline: v1 = `brightness(200%)`, outras não confirmadas (precisa do JS IX2 que não está exposto inline).
+
+### C2 — Estrutura real do Hero
+
+```html
+<section id="hero" class="main-section overflow">
+  <div class="wrapper-overflow">
+    <div class="main-container w-container">
+      <div class="wrapper-hero">
+        <div class="wrapper-text-hero">
+          <div class="block-text-hero">
+            <div class="wrapper-sub-title-hero">
+              <div class="text">AI that works.</div>
+            </div>
+            <div class="text-hero">Automate decisions with confidence.</div>
+          </div>
+        </div>
+        <div class="wrapper-content-hero">
+          <div class="lottie-scroll" data-animation-type="lottie" ...>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bg-animation-hero">
+    <div class="block-content-hero v1">
+      <div class="wrapper-subcontent-hero v1">
+        <img class="image-icon-hero" src=".../Square.png"/>
+        <div class="text-subcontent-hero">
+          <div class="scramble v1">VISION</div>
+        </div>
+      </div>
+    </div>
+    <div class="block-content-hero v2">
+      <div class="wrapper-subcontent-hero v2">
+        <img class="image-icon-hero" src=".../Circle.png"/>
+        <div class="text-subcontent-hero v2">
+          <div class="scramble v2">SMART</div>
+        </div>
+      </div>
+    </div>
+    <div class="block-content-hero v3">
+      <div class="wrapper-subcontent-hero v3">
+        <img class="image-icon-hero" src=".../Triangle.png"/>
+        <div class="text-subcontent-hero">
+          <div class="scramble v3">PRECISE</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+```
+
+**Headline real**: 1 linha pequena (eyebrow-ish) + 1 linha grande (não 2 linhas grandes como spec antigo dizia).
+
+**bg-animation-hero (background composto)**:
+```css
+.bg-animation-hero {
+  position: absolute;
+  inset: 0;
+  flex-flow: column;
+  display: flex;
+  background-image:
+    linear-gradient(360deg, black, transparent 21%),
+    radial-gradient(circle farthest-corner at 50% 100%, transparent 60%, black 88%),
+    radial-gradient(circle farthest-corner at 50% 0%,   transparent 20%, black 88%),
+    url("Clip path group.png");
+  background-position: 0 0, 0 0, 0 0, 50%;
+  background-size: auto, auto, auto, 140% 155%;
+  filter: brightness(160%);
+}
+```
+
+**block-content-hero (3 bandas horizontais via flex column)**:
+```css
+.block-content-hero    { flex: 1; display: flex; }
+.block-content-hero.v1 { justify-content: space-between; align-items: flex-end; }
+.block-content-hero.v2 { justify-content: flex-end;      align-items: center; }
+.block-content-hero.v3 { justify-content: center;        align-items: flex-start; }
+```
+
+Resultado: 3 "cards" de label posicionados em superior-esquerdo / meio-direito / inferior-centro.
+
+### C3 — Anim 12 (button-secondary) é só font-weight
+
+CONFIRMADO via inline script:
+
+```javascript
+document.querySelectorAll(".button-secondary").forEach(button => {
+  const text = button.querySelector(".scramble");
+  button.addEventListener("mouseenter", () => {
+    gsap.to(text, { fontWeight: 600, duration: 0.25, ease: "power2.out" });
+  });
+  button.addEventListener("mouseleave", () => {
+    gsap.to(text, { fontWeight: 300, duration: 0.15, ease: "power4.out" });
+  });
+});
+```
+
+**Não tem scramble, não tem brightness flash.** Apenas font-weight 300 ↔ 600.
+
+### C4 — Anim 17 (Features círculo + counter) classes reais e valores reais
+
+CONFIRMADO via inline script:
+
+| Spec antigo | Real |
+|---|---|
+| `.mask` | `.radial-mask` |
+| `.empty` | `.circle-empty` |
+| `.number` | `.big-text` |
+| `.thin-border` | `.wrapper-text-counting` |
+
+E os valores finais:
+
+```javascript
+.to(mask, { rotate: 360, ease: "none" }, 0)
+.to(mask, { scale: 1.05, filter: "blur(0px)", opacity: 1, ease: "none" }, 0)
+.to(thinBorder, { borderColor: "rgba(59,130,246,0.7)", ease: "none" }, 0)  // NÃO #229eff puro
+.to(empty, { scale: 1.15, filter: "blur(4px)", opacity: 0.55, ease: "none" }, 0)  // NÃO 1.2/blur(0)/op:1
+.to(number, { innerText: 100, snap: { innerText: 1 }, ease: "none" }, 0);
+```
+
+`scrollTrigger`: `{ start: "top 75%", end: "bottom 75%", scrub: 0.6 }` — confere com spec antigo.
+
+### C5 — Sections IDs e classes
+
+```
+<section id="hero"        class="main-section overflow">
+<section                  class="main-section">
+<section id="product"     class="tracks product">
+<section                  class="main-section">
+<section id="lab"         class="tracks lab">
+<section id="workflow"    class="tracks workflow">
+<section                  class="main-section pricing">
+<section id="integration" class="tracks integration">
+<section                  class="main-section fixed">
+<section id="contact"     class="wrapper-footer anchor">
+```
+
+Sections com classe `.tracks` (product, lab, workflow, integration) provavelmente usam scroll-pinning ou layout horizontal — comportamento não totalmente extraído ainda. Os IDs esperados nas âncoras do navbar são: `#product`, `#lab`, `#workflow`, `#integration`, `#contact`.
+
+### C6 — Stack JS real
+
+`<script src>` confirmados na Quantara:
+- `gsap.min.js` (3.15.0)
+- `ScrollTrigger.min.js` (3.15.0)
+- `SplitText.min.js` (3.15.0)
+- Mais um GSAP 3.14.1 de jsdelivr (provavelmente fallback)
+- `jquery-3.5.1.min.js` (dep do Webflow)
+- 4 chunks `webflow.schunk.*.js` (contêm os IX2 interactions data — **não extraídos ainda**)
+- `webflow.dcbf40d7.*.js` (runtime principal do Webflow)
+
+`ScrambleTextPlugin` **não é carregado explicitamente** como `<script src>` separado — pode estar bundled num dos chunks ou ser implementado custom.
+
+### C7 — Asset PNGs do hero
+
+Ícones dos 3 corner-blocks do hero (Square / Circle / Triangle):
+- `https://cdn.prod.website-files.com/694f372b123017b1e0a43316/694f9c97caa6687a94160b05_Square.png`
+- `https://cdn.prod.website-files.com/694f372b123017b1e0a43316/694f9c973c0be5bb32690004_Circle.png`
+- `https://cdn.prod.website-files.com/694f372b123017b1e0a43316/694f9c9735e4184a62ba66f7_Triangle.png`
+
+Bg principal do hero: `694f839301ce2244c1bdadcf_Clip%20path%20group.png`.
+
+Orbits (Features): `69538ffea86737e86bae05ee_Orbit%201.png` (mesma imagem usada com rotações diferentes em v1-v4).
+
+Lottie do scroll indicator: `694f5f8fcaa6687a9412131c_Mouse%20scroll%20animation.lottie`.
+
+### C8 — O que ainda precisa ser extraído
+
+- Webflow IX2 interactions data (timings de cada `data-w-id` — 32 elementos) — está nos chunks JS, não inline
+- Comportamento exato dos `tracks` sections (scroll pinning? horizontal scroll?)
+- Animation real dos orbits (rotateZ infinito? scroll-driven?)
+- Reveal sequence completo do page-load
