@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* === Cores (Quantara tokens) === */
+    --color-black: #000000;
+    --color-almost-black: #0e0e0e;
+    --color-almost-black-2: #161616;
+    --color-black-gray: #181818;
+    --color-dark-gray: #5d5d5d;
+    --color-gray: #9f9f9f;
+    --color-light-gray: #d1d1d1;
+    --color-whitesmoke: #f5f5f5;
+    --color-white: #ffffff;
+    --color-blue: #229eff;
+    --color-dark-blue: #002b4d;
+    --color-red: #ff0000;
+    --color-red-secondary: rgba(255, 3, 3, 0.25);
+
+    /* === Layout / spacing (vw-relative) === */
+    --padding-top-wrap-block-product: 3.8vw;
+    --padding-overflow-block-product: -6vw;
+    --padding-icon-product: 0.8vw;
+    --overflow-orbit: -35vw;
+    --main-button-y: 1.5vw;
+    --main-button-x: 2vw;
+    --button-even-padding: 2vw;
+    --content-top-bottom-padding: 0.75vw;
+    --content-left-right-padding: 1.6vw;
+    --top-bottom-padding-button: 0.5vw;
+    --left-right-padding-contact-us: 1.2vw;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    background-color: var(--color-almost-black);
+    color: var(--color-white);
+  }
+
+  body {
+    font-family: var(--font-inter-tight), system-ui, -apple-system, sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.6;
+    background-color: var(--color-almost-black);
+    color: var(--color-white);
+    overflow-x: hidden;
+  }
+
+  /* === Tipografia fluid (Quantara scale) === */
+  h1, .h1 {
+    font-size: 8vw;
+    line-height: 8vw;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+  }
+  h2, .h2 {
+    font-size: 6vw;
+    line-height: 6vw;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+  }
+  h3, .h3 {
+    font-size: 4vw;
+    line-height: 4.5vw;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+  }
+  h4, .h4 {
+    font-size: 2.5vw;
+    line-height: 3vw;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+  }
+  h5, .h5 {
+    font-size: 2vw;
+    line-height: 2.5vw;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+  }
+  h6, .h6 {
+    font-size: 1.7vw;
+    line-height: 1.7vw;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+  }
+
+  /* Mobile fallback — keep readable below 768px */
+  @media (max-width: 768px) {
+    h1, .h1 { font-size: clamp(2.5rem, 13vw, 4.5rem); line-height: 1; }
+    h2, .h2 { font-size: clamp(2rem, 10vw, 3.5rem); line-height: 1.05; }
+    h3, .h3 { font-size: clamp(1.5rem, 7vw, 2.5rem); line-height: 1.1; }
+    h4, .h4 { font-size: clamp(1.25rem, 5.5vw, 1.875rem); line-height: 1.15; }
+    h5, .h5 { font-size: clamp(1.125rem, 4.5vw, 1.5rem); line-height: 1.25; }
+    h6, .h6 { font-size: clamp(1rem, 3.5vw, 1.25rem); line-height: 1.3; }
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    font: inherit;
+  }
+
+  img, svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  ::selection {
+    background-color: var(--color-blue);
+    color: var(--color-white);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-blue);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 500;
+    color: var(--color-gray);
+  }
+
+  .container-fluid {
+    width: 100%;
+    padding-left: 2vw;
+    padding-right: 2vw;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
