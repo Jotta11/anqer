@@ -28,6 +28,25 @@ export function useCorePlatformCycle(scope: RefObject<HTMLElement>) {
   useEffect(() => {
     if (reduced || !scope.current) return;
 
+    /**
+     * Active filters — uma cor distinta e vibrante por ícone, com drop-shadow
+     * (glow) na mesma cor pra reforçar identidade visual. Todos os filtros têm
+     * a MESMA ordem/quantidade de funções pra GSAP conseguir interpolar.
+     *
+     *  v1 → azul puro    (Web)
+     *  v2 → cyan/teal    (Mobile)         hue-rotate(330deg) gira azul → cyan
+     *  v3 → verde        (Auto)           hue-rotate(270deg) gira azul → verde
+     *  v4 → laranja/ochre (Cloud)         hue-rotate(180deg) gira azul → laranja
+     */
+    const FILTER_INACTIVE =
+      "grayscale(100%) brightness(0.55) saturate(1) hue-rotate(0deg) drop-shadow(0 0 0px rgba(0,0,0,0))";
+    const FILTER_ACTIVE: Record<number, string> = {
+      1: "grayscale(0%) brightness(1.35) saturate(1.6) hue-rotate(0deg) drop-shadow(0 0 20px rgba(34,158,255,0.9))",
+      2: "grayscale(0%) brightness(1.4) saturate(1.8) hue-rotate(330deg) drop-shadow(0 0 20px rgba(120,220,220,0.9))",
+      3: "grayscale(0%) brightness(1.35) saturate(1.6) hue-rotate(270deg) drop-shadow(0 0 20px rgba(120,220,150,0.9))",
+      4: "grayscale(0%) brightness(1.3) saturate(1.5) hue-rotate(180deg) drop-shadow(0 0 22px rgba(255,180,80,0.95))",
+    };
+
     const ctx = gsap.context(() => {
       // Estado inicial — v1 visível, v2-v4 ocultas (preparadas pra entrar de baixo)
       gsap.set(
@@ -43,7 +62,7 @@ export function useCorePlatformCycle(scope: RefObject<HTMLElement>) {
         color: "#ffffff",
         boxShadow: "0 0 0 4px rgba(255,255,255,0.04)",
       });
-      gsap.set(".icon-product.v1", { filter: "grayscale(0%)" });
+      gsap.set(".icon-product.v1", { filter: FILTER_ACTIVE[1] });
 
       [2, 3, 4].forEach((n) => {
         gsap.set(
@@ -59,7 +78,7 @@ export function useCorePlatformCycle(scope: RefObject<HTMLElement>) {
           color: "rgba(255,255,255,0.5)",
           boxShadow: "0 0 0 0px rgba(255,255,255,0)",
         });
-        gsap.set(`.icon-product.v${n}`, { filter: "grayscale(100%)" });
+        gsap.set(`.icon-product.v${n}`, { filter: FILTER_INACTIVE });
       });
 
       // Timeline com scrub — segue exatamente o scroll
@@ -111,7 +130,7 @@ export function useCorePlatformCycle(scope: RefObject<HTMLElement>) {
         );
         tl.to(
           `.icon-product.v${from}`,
-          { filter: "grayscale(100%)", duration: 0.1, ease: "power2.out" },
+          { filter: FILTER_INACTIVE, duration: 0.1, ease: "power2.out" },
           tOut
         );
 
@@ -139,7 +158,7 @@ export function useCorePlatformCycle(scope: RefObject<HTMLElement>) {
         );
         tl.to(
           `.icon-product.v${to}`,
-          { filter: "grayscale(0%)", duration: 0.1, ease: "power2.out" },
+          { filter: FILTER_ACTIVE[to], duration: 0.1, ease: "power2.out" },
           tIn
         );
       });

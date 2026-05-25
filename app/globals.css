@@ -797,11 +797,13 @@ html.js-loading :is(
   background-size: contain;
 }
 
-/* Icons inside each iso block — também PNG da Quantara como placeholder */
+/* Icons inside each iso block — também PNG da Quantara como placeholder.
+   Filter inicial vem do useCorePlatformCycle (5 funções na mesma ordem que
+   os filtros active, pra GSAP interpolar suavemente). */
 .icon-product {
   position: absolute;
   z-index: 2;
-  filter: grayscale(100%);
+  filter: grayscale(100%) brightness(0.55) saturate(1) hue-rotate(0deg) drop-shadow(0 0 0px rgba(0,0,0,0));
   will-change: filter, transform;
   background-position: 50% 50%;
   background-repeat: no-repeat;
@@ -829,8 +831,11 @@ html.js-loading :is(
   height: 5vw;
   background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6952a95f0b7d0e5d63ed20fb_encrypted.png");
 }
-/* Initial state: v1 in color (active), others grayscale */
-.icon-product.v1 { filter: grayscale(0%); }
+/* v1 starts active (in color, blue glow) — para evitar flash entre SSR e JS,
+   o estado ativo é replicado aqui em CSS. JS sobrescreve em mount. */
+.icon-product.v1 {
+  filter: grayscale(0%) brightness(1.35) saturate(1.6) hue-rotate(0deg) drop-shadow(0 0 20px rgba(34,158,255,0.9));
+}
 @media (max-width: 768px) {
   .icon-product.v1,
   .icon-product.v2,

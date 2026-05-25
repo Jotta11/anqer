@@ -2,7 +2,7 @@
 
 import { type RefObject } from "react";
 import { useCorePlatformCycle } from "./useCorePlatformCycle";
-import { useIconBobbing } from "./useIconBobbing";
+import { useIconScrollLift } from "./useIconScrollLift";
 
 type Props = {
   scope: RefObject<HTMLElement>;
@@ -11,11 +11,13 @@ type Props = {
 /**
  * Orquestra o motion do Core Platform:
  *  - useCorePlatformCycle: cycle scroll-tied entre os 4 estados
- *    (subtitle, big category text, labels, círculo ativo, ícone color)
- *  - useIconBobbing: flutuação Y senoidal infinita dos 4 ícones
+ *    (subtitle, big category text, labels, círculo ativo, cor do ícone)
+ *  - useIconScrollLift: ícone ativo sobe (y: -1.8vw), demais ficam pousados.
+ *    Sincronizado com o cycle — quando o estado muda, o ícone "sai" e o
+ *    próximo "sobe".
  */
 export default function CorePlatformMotion({ scope }: Props) {
   useCorePlatformCycle(scope);
-  useIconBobbing(scope);
+  useIconScrollLift(scope);
   return null;
 }
