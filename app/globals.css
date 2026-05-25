@@ -752,8 +752,8 @@ html.js-loading :is(
   flex-flow: column;
   justify-content: flex-start;
   align-items: center;
-  width: 38vw;
-  height: 28vw;
+  width: 52vw;
+  height: 38vw;
   position: relative;
   background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6952a960f6d8b19db76f89a9_extrude-group-ground.png");
   background-position: 50% 50%;
@@ -761,7 +761,7 @@ html.js-loading :is(
   background-size: contain;
 }
 @media (max-width: 768px) {
-  .wrapper-block-product { width: 86vw; height: 60vw; }
+  .wrapper-block-product { width: 92vw; height: 68vw; }
 }
 
 .block-image-product {
@@ -769,17 +769,17 @@ html.js-loading :is(
   flex-flow: column;
   justify-content: flex-start;
   align-items: center;
-  width: 12vw;
-  height: 8vw;
+  width: 17vw;
+  height: 12vw;
   position: relative;
   will-change: transform;
 }
 @media (max-width: 768px) {
-  .block-image-product { width: 24vw; height: 16vw; }
+  .block-image-product { width: 30vw; height: 21vw; }
 }
-.block-image-product.v4 { margin-top: -4.2vw; }
+.block-image-product.v4 { margin-top: -5.8vw; }
 .wrapper-block-image-product {
-  margin-top: -4.2vw;
+  margin-top: -5.8vw;
   display: flex;
   gap: 0;
 }
@@ -812,23 +812,23 @@ html.js-loading :is(
   pointer-events: none;
 }
 .icon-product.v1 {
-  width: 5vw;
-  height: 5vw;
+  width: 7vw;
+  height: 7vw;
   background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6952a95f258b8e73d7666537_bar-chart.png");
 }
 .icon-product.v2 {
-  width: 5vw;
-  height: 5vw;
+  width: 7vw;
+  height: 7vw;
   background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6952afed8d4ca6576fcbdedf_linked-services.png");
 }
 .icon-product.v3 {
-  width: 4.6vw;
-  height: 4.6vw;
+  width: 6.5vw;
+  height: 6.5vw;
   background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6952a95f1c8555865fea32ed_auto-renew.png");
 }
 .icon-product.v4 {
-  width: 5vw;
-  height: 5vw;
+  width: 7vw;
+  height: 7vw;
   background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6952a95f0b7d0e5d63ed20fb_encrypted.png");
 }
 /* Todos os ícones começam inativos (dim/grayscale). v1 ativa via JS
