@@ -83,9 +83,7 @@ export default function CorePlatform() {
                     <div className="block-logo-circle-product">
                       {corePlatform.items.map((item, i) => (
                         <Fragment key={item.number}>
-                          <div
-                            className={`logo-circle-product v${i + 1}${i === 0 ? " active" : ""}`}
-                          >
+                          <div className={`logo-circle-product v${i + 1}`}>
                             <div className={`small-text secondary v${i + 1}`}>
                               {item.number}
                             </div>

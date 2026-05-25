@@ -831,11 +831,8 @@ html.js-loading :is(
   height: 5vw;
   background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6952a95f0b7d0e5d63ed20fb_encrypted.png");
 }
-/* v1 starts active (in color, blue glow) — para evitar flash entre SSR e JS,
-   o estado ativo é replicado aqui em CSS. JS sobrescreve em mount. */
-.icon-product.v1 {
-  filter: grayscale(0%) brightness(1.35) saturate(1.6) hue-rotate(0deg) drop-shadow(0 0 20px rgba(34,158,255,0.9));
-}
+/* Todos os ícones começam inativos (dim/grayscale). v1 ativa via JS
+   (useCorePlatformCycle) durante o primeiro scroll dentro da seção. */
 @media (max-width: 768px) {
   .icon-product.v1,
   .icon-product.v2,

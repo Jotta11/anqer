@@ -26,9 +26,8 @@ export function useIconScrollLift(scope: RefObject<HTMLElement>) {
     if (reduced || !scope.current) return;
 
     const ctx = gsap.context(() => {
-      // Estado inicial: v1 up, outras down
-      gsap.set(".icon-product.v1", { y: "-1.8vw" });
-      [2, 3, 4].forEach((n) =>
+      // Estado inicial: TODAS as 4 ícones pousadas (y: 0)
+      [1, 2, 3, 4].forEach((n) =>
         gsap.set(`.icon-product.v${n}`, { y: "0vw" })
       );
 
@@ -40,6 +39,13 @@ export function useIconScrollLift(scope: RefObject<HTMLElement>) {
           scrub: 0.8,
         },
       });
+
+      // ENTRY: v1 sobe pela primeira vez no mesmo ponto que o cycle ativa-o.
+      tl.to(
+        ".icon-product.v1",
+        { y: "-1.8vw", duration: 0.08, ease: "sine.out" },
+        0.04
+      );
 
       const TRANSITIONS: Array<{
         fall: number;

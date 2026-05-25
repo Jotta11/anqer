@@ -48,23 +48,10 @@ export function useCorePlatformCycle(scope: RefObject<HTMLElement>) {
     };
 
     const ctx = gsap.context(() => {
-      // Estado inicial — v1 visível, v2-v4 ocultas (preparadas pra entrar de baixo)
-      gsap.set(
-        [
-          ".subtitle-cycling.animation-v1",
-          ".medium-big-text.animated-v1",
-          ".scramble.animated-v1",
-        ],
-        { opacity: 1, y: 0 }
-      );
-      gsap.set(".logo-circle-product.v1", {
-        borderColor: "#ffffff",
-        color: "#ffffff",
-        boxShadow: "0 0 0 4px rgba(255,255,255,0.04)",
-      });
-      gsap.set(".icon-product.v1", { filter: FILTER_ACTIVE[1] });
-
-      [2, 3, 4].forEach((n) => {
+      // Estado inicial — TODAS as 4 states inativas. v1 entra durante a primeira
+      // janela de scroll (~2-6% do progress) como o user pediu: chegando na
+      // seção, Web está apagado e pra baixo; ele "sobe" conforme rola.
+      [1, 2, 3, 4].forEach((n) => {
         gsap.set(
           [
             `.subtitle-cycling.animation-v${n}`,
@@ -91,6 +78,34 @@ export function useCorePlatformCycle(scope: RefObject<HTMLElement>) {
           invalidateOnRefresh: true,
         },
       });
+
+      // ENTRY (0.02 → 0.06): v1 ativa pela primeira vez (estava inativa em 0.00)
+      tl.fromTo(
+        [
+          ".subtitle-cycling.animation-v1",
+          ".medium-big-text.animated-v1",
+          ".scramble.animated-v1",
+        ],
+        { opacity: 0, y: 24 },
+        { opacity: 1, y: 0, duration: 0.1, ease: "power2.out" },
+        0.04
+      );
+      tl.to(
+        ".logo-circle-product.v1",
+        {
+          borderColor: "#ffffff",
+          color: "#ffffff",
+          boxShadow: "0 0 0 4px rgba(255,255,255,0.04)",
+          duration: 0.1,
+          ease: "power2.out",
+        },
+        0.04
+      );
+      tl.to(
+        ".icon-product.v1",
+        { filter: FILTER_ACTIVE[1], duration: 0.1, ease: "power2.out" },
+        0.04
+      );
 
       const TRANSITIONS: Array<{ out: number; in: number }> = [
         { out: 0.2, in: 0.3 }, // 1 → 2
