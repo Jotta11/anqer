@@ -29,22 +29,26 @@ export function useCorePlatformCycle(scope: RefObject<HTMLElement>) {
     if (reduced || !scope.current) return;
 
     /**
-     * Active filters — uma cor distinta e vibrante por ícone, com drop-shadow
-     * (glow) na mesma cor pra reforçar identidade visual. Todos os filtros têm
-     * a MESMA ordem/quantidade de funções pra GSAP conseguir interpolar.
+     * Cada ícone tem hue-rotate FIXO em qualquer estado (active ou inactive).
+     * Durante as transições, apenas brightness/saturate/drop-shadow variam —
+     * impossível "flashear" cores intermediárias.
      *
-     *  v1 → azul puro    (Web)
-     *  v2 → cyan/teal    (Mobile)         hue-rotate(330deg) gira azul → cyan
-     *  v3 → verde        (Auto)           hue-rotate(270deg) gira azul → verde
-     *  v4 → laranja/ochre (Cloud)         hue-rotate(180deg) gira azul → laranja
+     *  v1 → azul    (Web)        hue-rotate(0deg)
+     *  v2 → cyan    (Mobile)     hue-rotate(330deg)
+     *  v3 → verde   (Auto)       hue-rotate(270deg)
+     *  v4 → laranja (Cloud)      hue-rotate(180deg)
      */
-    const FILTER_INACTIVE =
-      "grayscale(100%) brightness(0.55) saturate(1) hue-rotate(0deg) drop-shadow(0 0 0px rgba(0,0,0,0))";
+    const FILTER_INACTIVE: Record<number, string> = {
+      1: "grayscale(0%) brightness(0.4) saturate(0.1) hue-rotate(0deg) drop-shadow(0 0 0px rgba(0,0,0,0))",
+      2: "grayscale(0%) brightness(0.4) saturate(0.1) hue-rotate(330deg) drop-shadow(0 0 0px rgba(0,0,0,0))",
+      3: "grayscale(0%) brightness(0.4) saturate(0.1) hue-rotate(270deg) drop-shadow(0 0 0px rgba(0,0,0,0))",
+      4: "grayscale(0%) brightness(0.4) saturate(0.1) hue-rotate(180deg) drop-shadow(0 0 0px rgba(0,0,0,0))",
+    };
     const FILTER_ACTIVE: Record<number, string> = {
-      1: "grayscale(0%) brightness(1.35) saturate(1.6) hue-rotate(0deg) drop-shadow(0 0 20px rgba(34,158,255,0.9))",
-      2: "grayscale(0%) brightness(1.4) saturate(1.8) hue-rotate(330deg) drop-shadow(0 0 20px rgba(120,220,220,0.9))",
-      3: "grayscale(0%) brightness(1.35) saturate(1.6) hue-rotate(270deg) drop-shadow(0 0 20px rgba(120,220,150,0.9))",
-      4: "grayscale(0%) brightness(1.3) saturate(1.5) hue-rotate(180deg) drop-shadow(0 0 22px rgba(255,180,80,0.95))",
+      1: "grayscale(0%) brightness(1.4) saturate(1.7) hue-rotate(0deg) drop-shadow(0 0 22px rgba(34,158,255,0.95))",
+      2: "grayscale(0%) brightness(1.4) saturate(1.7) hue-rotate(330deg) drop-shadow(0 0 22px rgba(120,220,220,0.95))",
+      3: "grayscale(0%) brightness(1.4) saturate(1.7) hue-rotate(270deg) drop-shadow(0 0 22px rgba(120,220,150,0.95))",
+      4: "grayscale(0%) brightness(1.35) saturate(1.5) hue-rotate(180deg) drop-shadow(0 0 24px rgba(255,180,80,0.98))",
     };
 
     const ctx = gsap.context(() => {
@@ -65,7 +69,7 @@ export function useCorePlatformCycle(scope: RefObject<HTMLElement>) {
           color: "rgba(255,255,255,0.5)",
           boxShadow: "0 0 0 0px rgba(255,255,255,0)",
         });
-        gsap.set(`.icon-product.v${n}`, { filter: FILTER_INACTIVE });
+        gsap.set(`.icon-product.v${n}`, { filter: FILTER_INACTIVE[n] });
       });
 
       // Timeline com scrub — segue exatamente o scroll
@@ -145,7 +149,7 @@ export function useCorePlatformCycle(scope: RefObject<HTMLElement>) {
         );
         tl.to(
           `.icon-product.v${from}`,
-          { filter: FILTER_INACTIVE, duration: 0.1, ease: "power2.out" },
+          { filter: FILTER_INACTIVE[from], duration: 0.1, ease: "power2.out" },
           tOut
         );
 
