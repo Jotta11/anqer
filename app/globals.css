@@ -1157,22 +1157,21 @@ html.js-loading :is(
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  width: 22vw;
+  width: 20vw;
   position: relative;
   will-change: transform, filter;
 }
-/* Cascata lateral em "trem" — front-left → back-right, cada bloco
-   subsequente desloca -10vw pra esquerda (overlap) e ~2vw pra cima
-   (perspectiva iso). z-index decresce v1 (frente) → v4 (fundo). */
-.block-image-workflow.v1 { z-index: 4; margin-top: 3vw; }
-.block-image-workflow.v2 { z-index: 3; margin-left: -10vw; margin-top: 1vw; }
-.block-image-workflow.v3 { z-index: 2; margin-left: -10vw; margin-top: -1vw; }
-.block-image-workflow.v4 { z-index: 1; margin-left: -10vw; margin-top: -3vw; }
+/* Cascata lateral suave — overlap menor (-7vw), stagger pequeno (1vw por
+   passo) pros 4 blocos lerem como "trem" mas sem inclinação exagerada. */
+.block-image-workflow.v1 { z-index: 4; margin-top: 0; }
+.block-image-workflow.v2 { z-index: 3; margin-left: -7vw; margin-top: -1vw; }
+.block-image-workflow.v3 { z-index: 2; margin-left: -7vw; margin-top: -2vw; }
+.block-image-workflow.v4 { z-index: 1; margin-left: -7vw; margin-top: -3vw; }
 @media (max-width: 768px) {
-  .block-image-workflow { width: 38vw; }
-  .block-image-workflow.v2 { margin-left: -16vw; }
-  .block-image-workflow.v3 { margin-left: -16vw; }
-  .block-image-workflow.v4 { margin-left: -16vw; }
+  .block-image-workflow { width: 34vw; }
+  .block-image-workflow.v2 { margin-left: -12vw; margin-top: -2vw; }
+  .block-image-workflow.v3 { margin-left: -12vw; margin-top: -4vw; }
+  .block-image-workflow.v4 { margin-left: -12vw; margin-top: -6vw; }
 }
 
 /* Iso block base + icon (PNG placeholders from Quantara CDN) */
@@ -1186,11 +1185,12 @@ html.js-loading :is(
 }
 .icon-workflow {
   position: absolute;
-  top: 14%;
+  top: 4%;
   left: 50%;
+  /* Tamanho proporcional ao bloco-pai (~45% da largura) — não vaza do topo iso */
+  width: 9vw;
+  height: 9vw;
   transform: translateX(-50%);
-  width: 12vw;
-  height: 12vw;
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: contain;
@@ -1215,7 +1215,7 @@ html.js-loading :is(
   filter: grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(180deg) drop-shadow(0 0 0px rgba(0,0,0,0));
 }
 @media (max-width: 768px) {
-  .icon-workflow { width: 20vw; height: 20vw; }
+  .icon-workflow { width: 16vw; height: 16vw; }
 }
 
 /* Trigger zones */
