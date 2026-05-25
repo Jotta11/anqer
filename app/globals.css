@@ -992,10 +992,10 @@ html.js-loading :is(
     );
 }
 
-/* LEFT column */
+/* LEFT column (texto cycling) — ~40% da largura */
 .wrapper-workflows {
   padding-left: 4vw;
-  flex: 1;
+  flex: 0 0 42%;
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -1058,55 +1058,44 @@ html.js-loading :is(
   will-change: transform, opacity;
 }
 
-/* Dashed connector line on the left */
+/* Dashed connector line on the far left — PNG do Quantara (tracinhos
+   horizontais empilhados verticalmente, repete em Y). */
 .image-line {
   position: absolute;
-  inset: 0;
-  margin-left: 4vw;
-  width: 1px;
-  height: 100%;
-  background-image: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.18) 50%,
-    transparent 50%
-  );
-  background-size: 1px 12px;
+  left: 2vw;
+  top: 0;
+  bottom: 0;
+  width: 1.2vw;
+  background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6957632144c9c6130aa23412_Line%20Dashed.png");
+  background-position: 0 0;
   background-repeat: repeat-y;
+  background-size: contain;
   z-index: 0;
+  pointer-events: none;
 }
 
-/* Step block: number + title + description (4 absolute, cycle) */
+/* Step block: number (far left) + title + description (cycle, absolute) */
 .block-flow {
   position: absolute;
   top: 50%;
-  left: 4vw;
+  left: 0;
+  right: 0;
   transform: translateY(-50%);
-  padding-left: 4vw;
+  padding-left: 4.5vw;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 3vw;
-  max-width: 70vw;
+  gap: 6vw;
   will-change: opacity, transform;
 }
+/* "02" small index marker — pegado na borda esquerda, gray */
 .block-flow-number {
-  font-size: clamp(1rem, 1.4vw, 1.5rem);
-  color: var(--color-white);
-  font-weight: 500;
-  position: relative;
-  padding-left: 0.8vw;
-}
-.block-flow-number::before {
-  content: "";
-  position: absolute;
-  left: -3.6vw;
-  top: 50%;
-  width: 1.2vw;
-  height: 1.2vw;
-  background-color: var(--color-blue);
-  border-radius: 50%;
-  transform: translateY(-50%);
-  box-shadow: 0 0 12px rgba(34, 158, 255, 0.6);
+  font-size: clamp(0.85rem, 1vw, 1.1rem);
+  color: var(--color-gray);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  min-width: 2vw;
+  flex-shrink: 0;
 }
 
 .block-content-flow {
@@ -1157,21 +1146,21 @@ html.js-loading :is(
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  width: 20vw;
+  width: 23vw;
   position: relative;
   will-change: transform, filter;
 }
-/* Cascata lateral suave — overlap menor (-7vw), stagger pequeno (1vw por
-   passo) pros 4 blocos lerem como "trem" mas sem inclinação exagerada. */
+/* Cascata muito sutil — quase mesma altura. Stagger só sugere
+   profundidade iso; o lift do ativo é quem cria contraste vertical. */
 .block-image-workflow.v1 { z-index: 4; margin-top: 0; }
-.block-image-workflow.v2 { z-index: 3; margin-left: -7vw; margin-top: -1vw; }
-.block-image-workflow.v3 { z-index: 2; margin-left: -7vw; margin-top: -2vw; }
-.block-image-workflow.v4 { z-index: 1; margin-left: -7vw; margin-top: -3vw; }
+.block-image-workflow.v2 { z-index: 3; margin-left: -8vw; margin-top: -0.6vw; }
+.block-image-workflow.v3 { z-index: 2; margin-left: -8vw; margin-top: -1.2vw; }
+.block-image-workflow.v4 { z-index: 1; margin-left: -8vw; margin-top: -1.8vw; }
 @media (max-width: 768px) {
-  .block-image-workflow { width: 34vw; }
-  .block-image-workflow.v2 { margin-left: -12vw; margin-top: -2vw; }
-  .block-image-workflow.v3 { margin-left: -12vw; margin-top: -4vw; }
-  .block-image-workflow.v4 { margin-left: -12vw; margin-top: -6vw; }
+  .block-image-workflow { width: 36vw; }
+  .block-image-workflow.v2 { margin-left: -14vw; margin-top: -1vw; }
+  .block-image-workflow.v3 { margin-left: -14vw; margin-top: -2vw; }
+  .block-image-workflow.v4 { margin-left: -14vw; margin-top: -3vw; }
 }
 
 /* Iso block base + icon (PNG placeholders from Quantara CDN) */

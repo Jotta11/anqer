@@ -127,7 +127,7 @@ export function useWorkflowCycle(scope: RefObject<HTMLElement>) {
         );
         tl.to(
           `.block-image-workflow.v${to}`,
-          { y: "-1.5vw", duration: 0.1, ease: "sine.out" },
+          { y: "-4vw", duration: 0.1, ease: "sine.out" },
           tIn
         );
       });
