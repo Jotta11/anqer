@@ -944,6 +944,297 @@ html.js-loading :is(
 .trigger-contrast.v3 { height: 110vh; }
 .trigger-contrast.v4 { margin-top: 8vw; height: 200vh; }
 
+/* =================================================================
+   Workflow — pinned scroll section (tracks.workflow)
+   ================================================================= */
+
+.wrapper-workflow {
+  padding-top: 4vw;
+  padding-bottom: 4vw;
+  gap: 3vw;
+  height: 100%;
+  display: flex;
+  flex-flow: row;
+  position: relative;
+}
+@media (max-width: 768px) {
+  .wrapper-workflow { flex-flow: column; }
+}
+
+/* Background image + overlay */
+.bg-workflow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.image-bg-workflow {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/69577109649acd1403358c26_Abstract%20Blue%20Gradient.webp");
+  background-size: cover;
+  background-position: 50% 50%;
+  filter: saturate(156%) brightness(30%);
+}
+.bg-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(270deg, var(--color-black), transparent 30%),
+    linear-gradient(0deg, var(--color-black), transparent 10%),
+    linear-gradient(180deg, var(--color-black), transparent 35%),
+    repeating-radial-gradient(
+      circle farthest-corner at 0% 50%,
+      var(--color-black),
+      transparent 50%
+    );
+}
+
+/* LEFT column */
+.wrapper-workflows {
+  padding-left: 4vw;
+  flex: 1;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Badge bar at the top */
+.block-title-flow {
+  padding-top: 1.5vw;
+  padding-right: 6vw;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5vw;
+  position: absolute;
+  inset: 0 0 auto 0;
+}
+.badge {
+  z-index: 2;
+  padding: 0.4vw 1vw;
+  gap: 0.5vw;
+  border: 1px solid var(--color-almost-black-2);
+  border-radius: 999px;
+  background-color: transparent;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.badge .scramble {
+  font-size: clamp(0.7rem, 0.78vw, 0.85rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.badge .scramble.secondary {
+  color: var(--color-gray);
+}
+.badge .scramble.v1 {
+  color: var(--color-white);
+}
+.badge .scramble.badge-state {
+  color: var(--color-blue);
+}
+.block-title-workflow-animation {
+  display: flex;
+  gap: 0.2vw;
+  align-items: center;
+  overflow: hidden;
+}
+.block-title-workflow-animation .text-secondary {
+  font-size: clamp(0.7rem, 0.78vw, 0.85rem);
+  color: var(--color-gray);
+  line-height: 1;
+  will-change: transform, opacity;
+}
+
+/* Dashed connector line on the left */
+.image-line {
+  position: absolute;
+  inset: 0;
+  margin-left: 4vw;
+  width: 1px;
+  height: 100%;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 50%
+  );
+  background-size: 1px 12px;
+  background-repeat: repeat-y;
+  z-index: 0;
+}
+
+/* Step block: number + title + description (4 absolute, cycle) */
+.block-flow {
+  position: absolute;
+  top: 50%;
+  left: 4vw;
+  transform: translateY(-50%);
+  padding-left: 4vw;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 3vw;
+  max-width: 70vw;
+  will-change: opacity, transform;
+}
+.block-flow-number {
+  font-size: clamp(1rem, 1.4vw, 1.5rem);
+  color: var(--color-white);
+  font-weight: 500;
+  position: relative;
+  padding-left: 0.8vw;
+}
+.block-flow-number::before {
+  content: "";
+  position: absolute;
+  left: -3.6vw;
+  top: 50%;
+  width: 1.2vw;
+  height: 1.2vw;
+  background-color: var(--color-blue);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 0 12px rgba(34, 158, 255, 0.6);
+}
+
+.block-content-flow {
+  display: flex;
+  flex-flow: column;
+  gap: 1vw;
+}
+.block-content-flow .medium-big-text {
+  font-size: clamp(2rem, 4.5vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+.block-desc-content-flow {
+  width: 26vw;
+  max-width: 100%;
+}
+.block-desc-content-flow .text-secondary {
+  font-size: clamp(0.9rem, 1.1vw, 1.15rem);
+  color: var(--color-light-gray);
+  line-height: 1.45;
+}
+
+/* RIGHT column: 4 iso blocks stacked diagonally */
+.wrapper-workflows.v2 {
+  flex: 1;
+  padding-left: 0;
+  background-image:
+    url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/695784b8fedf0b3103908ec2_grid%20bg.png"),
+    linear-gradient(180deg, var(--color-black) 80%, transparent);
+  background-position: 50%, 0 0;
+  background-repeat: no-repeat, repeat;
+  background-size: 115vw, auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+.block-card-workflow {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+.block-image-workflow {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 16vw;
+  position: relative;
+  will-change: transform, filter;
+}
+.block-image-workflow.v1 { z-index: 4; margin-top: 0; }
+.block-image-workflow.v2 { z-index: 3; margin-left: -6vw; margin-top: -3vw; }
+.block-image-workflow.v3 { z-index: 2; margin-left: -12vw; margin-top: -3vw; }
+.block-image-workflow.v4 { z-index: 1; margin-left: -18vw; margin-top: -3vw; }
+@media (max-width: 768px) {
+  .block-image-workflow { width: 28vw; }
+  .block-image-workflow.v2 { margin-left: -10vw; }
+  .block-image-workflow.v3 { margin-left: -20vw; }
+  .block-image-workflow.v4 { margin-left: -30vw; }
+}
+
+/* Iso block base + icon (PNG placeholders from Quantara CDN) */
+.block-image-workflow-base {
+  width: 100%;
+  aspect-ratio: 1.5 / 1;
+  background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6957848774c9981589e6f4dd_Extrude%20Workflow.png");
+  background-size: contain;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+.icon-workflow {
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 9vw;
+  height: 9vw;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 2;
+  pointer-events: none;
+  will-change: filter;
+}
+.icon-workflow.v1 {
+  background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/69578490882419fc1e01db35_send-money.png");
+  filter: grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(0deg) drop-shadow(0 0 0px rgba(0,0,0,0));
+}
+.icon-workflow.v2 {
+  background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6957848775e47cb93705303b_input-circle.png");
+  filter: grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(330deg) drop-shadow(0 0 0px rgba(0,0,0,0));
+}
+.icon-workflow.v3 {
+  background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6957848775e47cb93705303f_pie-chart.png");
+  filter: grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(270deg) drop-shadow(0 0 0px rgba(0,0,0,0));
+}
+.icon-workflow.v4 {
+  background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6957848757af7f496852add3_data.png");
+  filter: grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(180deg) drop-shadow(0 0 0px rgba(0,0,0,0));
+}
+@media (max-width: 768px) {
+  .icon-workflow { width: 14vw; height: 14vw; }
+}
+
+/* Trigger zones */
+.trigger-wrapper-v3 {
+  position: absolute;
+  display: flex;
+  flex-flow: column;
+  gap: 200vh;
+  pointer-events: none;
+  opacity: 0;
+}
+.trigger-workflow {
+  width: 2vw;
+  height: 100vh;
+}
+
+/* Initial visibility: state v1 visible, v2-v4 hidden */
+.block-flow.v1 { opacity: 1; }
+.block-flow.v2,
+.block-flow.v3,
+.block-flow.v4 { opacity: 0; }
+
 /* Pricing card base (Anim 13) */
 .body-card-pricing {
   filter: grayscale(100%);

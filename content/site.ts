@@ -155,6 +155,11 @@ export const site = {
   workflow: {
     eyebrow: "PROCESSO",
     title: "Como construímos.",
+    badge: {
+      left: "FLUXO",        // equivalente ao "PARTIAL" do Quantara
+      right: "ETAPA",       // equivalente ao "TASK" do Quantara
+      // O state_label "[0X]" é atualizado pelo motion conforme o scroll
+    },
     steps: [
       {
         number: "01",
