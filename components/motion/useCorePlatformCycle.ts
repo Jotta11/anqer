@@ -39,10 +39,10 @@ export function useCorePlatformCycle(scope: RefObject<HTMLElement>) {
      *  v4 → laranja (Cloud)      hue-rotate(180deg)
      */
     const FILTER_INACTIVE: Record<number, string> = {
-      1: "grayscale(0%) brightness(0.4) saturate(0.1) hue-rotate(0deg) drop-shadow(0 0 0px rgba(0,0,0,0))",
-      2: "grayscale(0%) brightness(0.4) saturate(0.1) hue-rotate(330deg) drop-shadow(0 0 0px rgba(0,0,0,0))",
-      3: "grayscale(0%) brightness(0.4) saturate(0.1) hue-rotate(270deg) drop-shadow(0 0 0px rgba(0,0,0,0))",
-      4: "grayscale(0%) brightness(0.4) saturate(0.1) hue-rotate(180deg) drop-shadow(0 0 0px rgba(0,0,0,0))",
+      1: "grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(0deg) drop-shadow(0 0 0px rgba(0,0,0,0))",
+      2: "grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(330deg) drop-shadow(0 0 0px rgba(0,0,0,0))",
+      3: "grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(270deg) drop-shadow(0 0 0px rgba(0,0,0,0))",
+      4: "grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(180deg) drop-shadow(0 0 0px rgba(0,0,0,0))",
     };
     const FILTER_ACTIVE: Record<number, string> = {
       1: "grayscale(0%) brightness(1.4) saturate(1.7) hue-rotate(0deg) drop-shadow(0 0 22px rgba(34,158,255,0.95))",
