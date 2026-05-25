@@ -1146,21 +1146,22 @@ html.js-loading :is(
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  width: 23vw;
+  width: 18vw;
   position: relative;
   will-change: transform, filter;
 }
-/* Cascata muito sutil — quase mesma altura. Stagger só sugere
-   profundidade iso; o lift do ativo é quem cria contraste vertical. */
+/* Cascata sutil. Overlap calibrado pra TODOS os 4 blocos caberem no
+   container da direita sem vazar: 18 + 3*(18-10) = 42vw, com ~10vw de
+   margem dentro do col v2 (~53vw). */
 .block-image-workflow.v1 { z-index: 4; margin-top: 0; }
-.block-image-workflow.v2 { z-index: 3; margin-left: -8vw; margin-top: -0.6vw; }
-.block-image-workflow.v3 { z-index: 2; margin-left: -8vw; margin-top: -1.2vw; }
-.block-image-workflow.v4 { z-index: 1; margin-left: -8vw; margin-top: -1.8vw; }
+.block-image-workflow.v2 { z-index: 3; margin-left: -10vw; margin-top: -0.5vw; }
+.block-image-workflow.v3 { z-index: 2; margin-left: -10vw; margin-top: -1vw; }
+.block-image-workflow.v4 { z-index: 1; margin-left: -10vw; margin-top: -1.5vw; }
 @media (max-width: 768px) {
-  .block-image-workflow { width: 36vw; }
-  .block-image-workflow.v2 { margin-left: -14vw; margin-top: -1vw; }
-  .block-image-workflow.v3 { margin-left: -14vw; margin-top: -2vw; }
-  .block-image-workflow.v4 { margin-left: -14vw; margin-top: -3vw; }
+  .block-image-workflow { width: 32vw; }
+  .block-image-workflow.v2 { margin-left: -16vw; margin-top: -1vw; }
+  .block-image-workflow.v3 { margin-left: -16vw; margin-top: -2vw; }
+  .block-image-workflow.v4 { margin-left: -16vw; margin-top: -3vw; }
 }
 
 /* Iso block base + icon (PNG placeholders from Quantara CDN) */
@@ -1172,17 +1173,16 @@ html.js-loading :is(
   background-position: 50% 50%;
   background-repeat: no-repeat;
 }
+/* Icon preenche o bloco inteiro — o PNG do Quantara tem o icon graphic
+   pré-posicionado dentro do canvas pra alinhar com a face iso do bloco.
+   Background-size: contain + position 50/50 mantém esse alinhamento.
+   Não usar width/height fixos: forçar tamanho menor desalinha o graphic. */
 .icon-workflow {
   position: absolute;
-  top: 4%;
-  left: 50%;
-  /* Tamanho proporcional ao bloco-pai (~45% da largura) — não vaza do topo iso */
-  width: 9vw;
-  height: 9vw;
-  transform: translateX(-50%);
-  background-position: 50% 50%;
+  inset: 0;
+  background-position: 50% 38%;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: 70% auto;
   z-index: 2;
   pointer-events: none;
   will-change: filter;
@@ -1204,7 +1204,7 @@ html.js-loading :is(
   filter: grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(180deg) drop-shadow(0 0 0px rgba(0,0,0,0));
 }
 @media (max-width: 768px) {
-  .icon-workflow { width: 16vw; height: 16vw; }
+  .icon-workflow { background-size: 65% auto; }
 }
 
 /* Trigger zones */
