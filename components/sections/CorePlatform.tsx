@@ -2,6 +2,7 @@
 
 import { useRef, Fragment } from "react";
 import { site } from "@/content/site";
+import CorePlatformMotion from "@/components/motion/CorePlatformMotion";
 
 /**
  * Core Platform — pinned scroll section (1200vh, inner sticky 100vh).
@@ -170,6 +171,8 @@ export default function CorePlatform() {
           </div>
         </div>
       </div>
+
+      <CorePlatformMotion scope={scopeRef} />
     </section>
   );
 }
