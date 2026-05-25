@@ -49,32 +49,65 @@ export const site = {
     eyebrow: "SOBRE",
     title_line1: "A plataforma central.",
     title_line2: "Ferramentas que entregam.",
+    /**
+     * Cada item corresponde a um estado do scroll pinado (4 estados, ~300vh cada).
+     * Conteúdo cycla: subtitle (2 linhas no topo direito), category (big text central
+     * direito), e 4 labels nos rodapé (system+performance, 2 colunas × 2 linhas).
+     */
     items: [
       {
         number: "01",
         label: "Web",
+        category: "Web",
         title: "Desenvolvimento Web Avançado",
+        subtitle_line1: "Sites Institucionais e",
+        subtitle_line2: "Aplicações SaaS",
+        labels: {
+          system: { name: "STACK", value: "NEXT.JS" },
+          performance: { name: "FOCO", value: "RIGOR" },
+        },
         description:
           "Sites institucionais, landing pages e SaaS construídos com Next.js, TypeScript e infraestrutura moderna.",
       },
       {
         number: "02",
         label: "Mobile",
+        category: "Mobile",
         title: "Aplicativos Mobile",
+        subtitle_line1: "Apps Nativos e",
+        subtitle_line2: "Cross-Platform",
+        labels: {
+          system: { name: "STACK", value: "REACT NATIVE" },
+          performance: { name: "FOCO", value: "FLUIDEZ" },
+        },
         description:
           "Apps nativos e cross-platform para iOS e Android, com foco em performance e experiência.",
       },
       {
         number: "03",
         label: "Auto",
+        category: "Auto",
         title: "Sistemas e Automação",
+        subtitle_line1: "ERPs, Dashboards e",
+        subtitle_line2: "Integrações Customizadas",
+        labels: {
+          system: { name: "STACK", value: "API-FIRST" },
+          performance: { name: "FOCO", value: "AUTOMAÇÃO" },
+        },
         description:
           "ERPs, dashboards, integrações e automações sob demanda para fluxos específicos do seu negócio.",
       },
       {
         number: "04",
         label: "Cloud",
+        category: "Cloud",
         title: "Infraestrutura Escalável",
+        subtitle_line1: "Cloud, DevOps e",
+        subtitle_line2: "Segurança Robusta",
+        labels: {
+          system: { name: "STACK", value: "AWS · GCP" },
+          performance: { name: "FOCO", value: "SLA 99.9%" },
+        },
         description:
           "Cloud, DevOps, monitoramento e segurança. Tudo o que sustenta operações sérias.",
       },
