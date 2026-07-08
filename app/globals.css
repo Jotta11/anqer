@@ -4,18 +4,18 @@
 
 @layer base {
   :root {
-    /* === Cores (Quantara tokens) === */
+    /* === Cores (ID visual Anqer sobre a estrutura Quantara) === */
     --color-black: #000000;
-    --color-almost-black: #0e0e0e;
-    --color-almost-black-2: #161616;
-    --color-black-gray: #181818;
+    --color-almost-black: #0a0e16;
+    --color-almost-black-2: #10141d;
+    --color-black-gray: #131722;
     --color-dark-gray: #5d5d5d;
     --color-gray: #9f9f9f;
-    --color-light-gray: #d1d1d1;
+    --color-light-gray: #cbd5e1;
     --color-whitesmoke: #f5f5f5;
     --color-white: #ffffff;
-    --color-blue: #229eff;
-    --color-dark-blue: #002b4d;
+    --color-blue: #f97316; /* acento da marca (nome mantido por compat) */
+    --color-dark-blue: #431407;
     --color-red: #ff0000;
     --color-red-secondary: rgba(255, 3, 3, 0.25);
 
@@ -48,7 +48,7 @@
   }
 
   body {
-    font-family: var(--font-inter-tight), system-ui, -apple-system, sans-serif;
+    font-family: var(--font-space-grotesk), system-ui, -apple-system, sans-serif;
     font-weight: 500;
     font-size: 1rem;
     line-height: 1.6;
@@ -187,7 +187,7 @@
     ),
     radial-gradient(
       circle at 50% 50%,
-      rgba(34, 158, 255, 0.06),
+      rgba(249, 115, 22, 0.06),
       transparent 65%
     );
   filter: brightness(160%);

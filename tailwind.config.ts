@@ -25,7 +25,7 @@ const config: Config = {
         "red-secondary": "var(--color-red-secondary)",
       },
       fontFamily: {
-        sans: ["var(--font-inter-tight)", "system-ui", "sans-serif"],
+        sans: ["var(--font-space-grotesk)", "system-ui", "sans-serif"],
       },
       fontSize: {
         eyebrow: ["0.75rem", { lineHeight: "1", letterSpacing: "0.15em", fontWeight: "500" }],

@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Inter_Tight } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import { site } from "@/content/site";
 import LenisProvider from "@/components/motion/LenisProvider";
 import "./globals.css";
 
-const interTight = Inter_Tight({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-inter-tight",
+  variable: "--font-space-grotesk",
   display: "swap",
 });
 
@@ -37,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className={`${interTight.variable} js-loading`}>
+    <html lang="pt-BR" className={`${spaceGrotesk.variable} js-loading`}>
       <body className="bg-almost-black text-white antialiased">
         <LenisProvider>{children}</LenisProvider>
         <script
