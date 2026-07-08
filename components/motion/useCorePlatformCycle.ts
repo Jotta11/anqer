@@ -40,16 +40,16 @@ export function useCorePlatformCycle(scope: RefObject<HTMLElement>) {
      *  v4 → verde   (Cloud)      hue-rotate(290deg)
      */
     const FILTER_INACTIVE: Record<number, string> = {
-      1: "grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(175deg) drop-shadow(0 0 0px rgba(0,0,0,0))",
-      2: "grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(0deg) drop-shadow(0 0 0px rgba(0,0,0,0))",
-      3: "grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(65deg) drop-shadow(0 0 0px rgba(0,0,0,0))",
-      4: "grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(290deg) drop-shadow(0 0 0px rgba(0,0,0,0))",
+      1: "grayscale(0%) brightness(0.5) saturate(0.15) hue-rotate(175deg) drop-shadow(0 0 0px rgba(0,0,0,0))",
+      2: "grayscale(0%) brightness(0.5) saturate(0.15) hue-rotate(0deg) drop-shadow(0 0 0px rgba(0,0,0,0))",
+      3: "grayscale(0%) brightness(0.5) saturate(0.15) hue-rotate(65deg) drop-shadow(0 0 0px rgba(0,0,0,0))",
+      4: "grayscale(0%) brightness(0.5) saturate(0.15) hue-rotate(290deg) drop-shadow(0 0 0px rgba(0,0,0,0))",
     };
     const FILTER_ACTIVE: Record<number, string> = {
-      1: "grayscale(0%) brightness(1.4) saturate(1.7) hue-rotate(175deg) drop-shadow(0 0 22px rgba(249,115,22,0.95))",
-      2: "grayscale(0%) brightness(1.4) saturate(1.7) hue-rotate(0deg) drop-shadow(0 0 22px rgba(80,150,255,0.95))",
-      3: "grayscale(0%) brightness(1.4) saturate(1.7) hue-rotate(65deg) drop-shadow(0 0 22px rgba(170,120,255,0.95))",
-      4: "grayscale(0%) brightness(1.35) saturate(1.5) hue-rotate(290deg) drop-shadow(0 0 24px rgba(90,220,130,0.98))",
+      1: "grayscale(0%) brightness(1.4) saturate(1.7) hue-rotate(175deg) drop-shadow(0 0 14px rgba(249,115,22,0.55))",
+      2: "grayscale(0%) brightness(1.4) saturate(1.7) hue-rotate(0deg) drop-shadow(0 0 14px rgba(80,150,255,0.55))",
+      3: "grayscale(0%) brightness(1.4) saturate(1.7) hue-rotate(65deg) drop-shadow(0 0 14px rgba(170,120,255,0.55))",
+      4: "grayscale(0%) brightness(1.35) saturate(1.5) hue-rotate(290deg) drop-shadow(0 0 14px rgba(90,220,130,0.55))",
     };
 
     const ctx = gsap.context(() => {
@@ -68,6 +68,7 @@ export function useCorePlatformCycle(scope: RefObject<HTMLElement>) {
         gsap.set(`.logo-circle-product.v${n}`, {
           borderColor: "rgba(255,255,255,0.18)",
           color: "rgba(255,255,255,0.5)",
+          backgroundColor: "rgba(203,213,225,0)",
           boxShadow: "0 0 0 0px rgba(255,255,255,0)",
         });
         gsap.set(`.icon-product.v${n}`, { filter: FILTER_INACTIVE[n] });
@@ -98,9 +99,10 @@ export function useCorePlatformCycle(scope: RefObject<HTMLElement>) {
       tl.to(
         ".logo-circle-product.v1",
         {
-          borderColor: "#ffffff",
-          color: "#ffffff",
-          boxShadow: "0 0 0 4px rgba(255,255,255,0.04)",
+          borderColor: "rgba(203,213,225,0.9)",
+          color: "#0a0e16",
+          backgroundColor: "#cbd5e1",
+          boxShadow: "0 0 0 4px rgba(255,255,255,0.06)",
           duration: 0.1,
           ease: "power2.out",
         },
@@ -142,6 +144,7 @@ export function useCorePlatformCycle(scope: RefObject<HTMLElement>) {
           {
             borderColor: "rgba(255,255,255,0.18)",
             color: "rgba(255,255,255,0.5)",
+            backgroundColor: "rgba(203,213,225,0)",
             boxShadow: "0 0 0 0px rgba(255,255,255,0)",
             duration: 0.1,
             ease: "power2.out",
@@ -168,9 +171,10 @@ export function useCorePlatformCycle(scope: RefObject<HTMLElement>) {
         tl.to(
           `.logo-circle-product.v${to}`,
           {
-            borderColor: "#ffffff",
-            color: "#ffffff",
-            boxShadow: "0 0 0 4px rgba(255,255,255,0.04)",
+            borderColor: "rgba(203,213,225,0.9)",
+            color: "#0a0e16",
+            backgroundColor: "#cbd5e1",
+            boxShadow: "0 0 0 4px rgba(255,255,255,0.06)",
             duration: 0.1,
             ease: "power2.out",
           },

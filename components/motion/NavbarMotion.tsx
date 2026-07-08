@@ -41,21 +41,18 @@ export default function NavbarMotion({ scope }: Props) {
         leaveHandlers.set(link, onLeave);
       });
 
-      // Anim 15 — hide on scroll down / show on scroll up (só mobile)
-      const mm = gsap.matchMedia();
-      mm.add("(max-width: 767px)", () => {
-        const st = ScrollTrigger.create({
-          start: "top top",
-          end: "max",
-          onUpdate: (self) => {
-            if (self.direction === 1) {
-              gsap.to(scope.current, { autoAlpha: 0, duration: 0.3, ease: "power2.out" });
-            } else {
-              gsap.to(scope.current, { autoAlpha: 1, duration: 0.3, ease: "power2.in" });
-            }
-          },
-        });
-        return () => st.kill();
+      // Anim 15 — hide on scroll down / show on scroll up
+      // (o Quantara esconde a navbar em qualquer viewport, não só mobile)
+      ScrollTrigger.create({
+        start: "top top",
+        end: "max",
+        onUpdate: (self) => {
+          if (self.direction === 1) {
+            gsap.to(scope.current, { autoAlpha: 0, duration: 0.3, ease: "power2.out" });
+          } else {
+            gsap.to(scope.current, { autoAlpha: 1, duration: 0.3, ease: "power2.in" });
+          }
+        },
       });
 
       return () => {

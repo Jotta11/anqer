@@ -5,6 +5,7 @@ import { useMarquee } from "./useMarquee";
 import { useEcosystemScrollParallax } from "./useEcosystemScrollParallax";
 import { usePartnerHover } from "./usePartnerHover";
 import { useBorderFill } from "./useBorderFill";
+import { useScrambleLoop } from "./useScrambleLoop";
 
 type Props = {
   scope: RefObject<HTMLElement>;
@@ -22,5 +23,6 @@ export default function EcosystemMotion({ scope }: Props) {
   useEcosystemScrollParallax(scope);
   usePartnerHover(scope);
   useBorderFill(scope);
+  useScrambleLoop(scope, ".small-text.secondary.animation-loop");
   return null;
 }

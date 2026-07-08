@@ -1,9 +1,22 @@
 "use client";
 
 import { useRef } from "react";
-import { Plus } from "lucide-react";
+import {
+  Aperture,
+  Box,
+  Command,
+  Cpu,
+  Globe,
+  Hexagon,
+  Layers,
+  Plus,
+  Zap,
+} from "lucide-react";
 import { site } from "@/content/site";
 import EcosystemMotion from "@/components/motion/EcosystemMotion";
+
+// Ícones dos lockups placeholder (ícone + wordmark, como os logoipsum do Quantara)
+const partnerIcons = [Aperture, Layers, Hexagon, Command, Globe, Zap, Box, Cpu];
 
 /**
  * Ecosystem — estrutura espelhada do Quantara:
@@ -63,17 +76,28 @@ export default function Ecosystem() {
             <div className="block-partner-move">
               <div className="block-partners">
                 <div className="partner">
-                  {logos.map((logo, i) => (
-                    <a
-                      key={`${logo.name}-${i}`}
-                      href="#"
-                      className="block-partner"
-                      aria-label={logo.name}
-                    >
-                      {/* Placeholder enquanto não temos SVGs reais */}
-                      <span className="logo-partner">{logo.name}</span>
-                    </a>
-                  ))}
+                  {logos.map((logo, i) => {
+                    const Icon =
+                      partnerIcons[i % partnerIcons.length];
+                    return (
+                      <a
+                        key={`${logo.name}-${i}`}
+                        href="#"
+                        className="block-partner"
+                        aria-label={logo.name}
+                      >
+                        {/* Placeholder enquanto não temos SVGs reais */}
+                        <span className="logo-partner">
+                          <Icon
+                            className="logo-partner-icon"
+                            strokeWidth={1.8}
+                            aria-hidden
+                          />
+                          <span>{logo.name}</span>
+                        </span>
+                      </a>
+                    );
+                  })}
                 </div>
               </div>
             </div>
