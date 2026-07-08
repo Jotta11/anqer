@@ -638,10 +638,10 @@ html.js-loading :is(
   color: rgba(255, 255, 255, 0.6);
 }
 /* Row colors (per anim-v#) — defaults; motion layer will toggle which row is "active" */
-.medium-text.anim-v1 { color: rgba(255, 255, 255, 0.7); }
-.medium-text.anim-v2 { color: rgba(120, 200, 255, 0.85); }   /* cyan */
-.medium-text.anim-v3 { color: rgba(120, 220, 150, 0.85); }   /* green */
-.medium-text.anim-v4 { color: rgba(230, 200, 130, 0.85); }   /* ochre */
+.medium-text.anim-v1 { color: rgba(255, 170, 110, 0.85); }   /* laranja */
+.medium-text.anim-v2 { color: rgba(130, 170, 255, 0.85); }   /* azul */
+.medium-text.anim-v3 { color: rgba(190, 140, 255, 0.85); }   /* roxo */
+.medium-text.anim-v4 { color: rgba(130, 220, 150, 0.85); }   /* verde */
 
 /* "ABOUT US" scramble — sits at the right edge of block-title-product.v1
    which is 50% wide → ends up centered horizontally in the section. */
@@ -819,25 +819,25 @@ html.js-loading :is(
   width: 7vw;
   height: 7vw;
   background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6952a95f258b8e73d7666537_bar-chart.png");
-  filter: grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(0deg) drop-shadow(0 0 0px rgba(0,0,0,0));
+  filter: grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(175deg) drop-shadow(0 0 0px rgba(0,0,0,0));
 }
 .icon-product.v2 {
   width: 7vw;
   height: 7vw;
   background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6952afed8d4ca6576fcbdedf_linked-services.png");
-  filter: grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(330deg) drop-shadow(0 0 0px rgba(0,0,0,0));
+  filter: grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(0deg) drop-shadow(0 0 0px rgba(0,0,0,0));
 }
 .icon-product.v3 {
   width: 6.5vw;
   height: 6.5vw;
   background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6952a95f1c8555865fea32ed_auto-renew.png");
-  filter: grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(270deg) drop-shadow(0 0 0px rgba(0,0,0,0));
+  filter: grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(65deg) drop-shadow(0 0 0px rgba(0,0,0,0));
 }
 .icon-product.v4 {
   width: 7vw;
   height: 7vw;
   background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6952a95f0b7d0e5d63ed20fb_encrypted.png");
-  filter: grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(180deg) drop-shadow(0 0 0px rgba(0,0,0,0));
+  filter: grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(290deg) drop-shadow(0 0 0px rgba(0,0,0,0));
 }
 /* Todos os ícones começam inativos (dim/grayscale). v1 ativa via JS
    (useCorePlatformCycle) durante o primeiro scroll dentro da seção. */
@@ -976,7 +976,7 @@ html.js-loading :is(
   background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/69577109649acd1403358c26_Abstract%20Blue%20Gradient.webp");
   background-size: cover;
   background-position: 50% 50%;
-  filter: saturate(156%) brightness(30%);
+  filter: saturate(156%) brightness(30%) hue-rotate(175deg);
 }
 .bg-overlay {
   position: absolute;
@@ -1189,19 +1189,19 @@ html.js-loading :is(
 }
 .icon-workflow.v1 {
   background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/69578490882419fc1e01db35_send-money.png");
-  filter: grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(0deg) drop-shadow(0 0 0px rgba(0,0,0,0));
+  filter: grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(175deg) drop-shadow(0 0 0px rgba(0,0,0,0));
 }
 .icon-workflow.v2 {
   background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6957848775e47cb93705303b_input-circle.png");
-  filter: grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(330deg) drop-shadow(0 0 0px rgba(0,0,0,0));
+  filter: grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(0deg) drop-shadow(0 0 0px rgba(0,0,0,0));
 }
 .icon-workflow.v3 {
   background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6957848775e47cb93705303f_pie-chart.png");
-  filter: grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(270deg) drop-shadow(0 0 0px rgba(0,0,0,0));
+  filter: grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(65deg) drop-shadow(0 0 0px rgba(0,0,0,0));
 }
 .icon-workflow.v4 {
   background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6957848757af7f496852add3_data.png");
-  filter: grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(180deg) drop-shadow(0 0 0px rgba(0,0,0,0));
+  filter: grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(290deg) drop-shadow(0 0 0px rgba(0,0,0,0));
 }
 @media (max-width: 768px) {
   .icon-workflow { background-size: 65% auto; }

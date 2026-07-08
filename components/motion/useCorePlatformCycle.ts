@@ -33,22 +33,23 @@ export function useCorePlatformCycle(scope: RefObject<HTMLElement>) {
      * Durante as transições, apenas brightness/saturate/drop-shadow variam —
      * impossível "flashear" cores intermediárias.
      *
-     *  v1 → azul    (Web)        hue-rotate(0deg)
-     *  v2 → cyan    (Mobile)     hue-rotate(330deg)
-     *  v3 → verde   (Auto)       hue-rotate(270deg)
-     *  v4 → laranja (Cloud)      hue-rotate(180deg)
+     * Paleta do sistema de produtos da ID Anqer (PNG fonte é azul ≈210°):
+     *  v1 → laranja (Web)        hue-rotate(175deg)
+     *  v2 → azul    (Mobile)     hue-rotate(0deg)
+     *  v3 → roxo    (Auto)       hue-rotate(65deg)
+     *  v4 → verde   (Cloud)      hue-rotate(290deg)
      */
     const FILTER_INACTIVE: Record<number, string> = {
-      1: "grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(0deg) drop-shadow(0 0 0px rgba(0,0,0,0))",
-      2: "grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(330deg) drop-shadow(0 0 0px rgba(0,0,0,0))",
-      3: "grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(270deg) drop-shadow(0 0 0px rgba(0,0,0,0))",
-      4: "grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(180deg) drop-shadow(0 0 0px rgba(0,0,0,0))",
+      1: "grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(175deg) drop-shadow(0 0 0px rgba(0,0,0,0))",
+      2: "grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(0deg) drop-shadow(0 0 0px rgba(0,0,0,0))",
+      3: "grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(65deg) drop-shadow(0 0 0px rgba(0,0,0,0))",
+      4: "grayscale(0%) brightness(0.65) saturate(0.3) hue-rotate(290deg) drop-shadow(0 0 0px rgba(0,0,0,0))",
     };
     const FILTER_ACTIVE: Record<number, string> = {
-      1: "grayscale(0%) brightness(1.4) saturate(1.7) hue-rotate(0deg) drop-shadow(0 0 22px rgba(34,158,255,0.95))",
-      2: "grayscale(0%) brightness(1.4) saturate(1.7) hue-rotate(330deg) drop-shadow(0 0 22px rgba(120,220,220,0.95))",
-      3: "grayscale(0%) brightness(1.4) saturate(1.7) hue-rotate(270deg) drop-shadow(0 0 22px rgba(120,220,150,0.95))",
-      4: "grayscale(0%) brightness(1.35) saturate(1.5) hue-rotate(180deg) drop-shadow(0 0 24px rgba(255,180,80,0.98))",
+      1: "grayscale(0%) brightness(1.4) saturate(1.7) hue-rotate(175deg) drop-shadow(0 0 22px rgba(249,115,22,0.95))",
+      2: "grayscale(0%) brightness(1.4) saturate(1.7) hue-rotate(0deg) drop-shadow(0 0 22px rgba(80,150,255,0.95))",
+      3: "grayscale(0%) brightness(1.4) saturate(1.7) hue-rotate(65deg) drop-shadow(0 0 22px rgba(170,120,255,0.95))",
+      4: "grayscale(0%) brightness(1.35) saturate(1.5) hue-rotate(290deg) drop-shadow(0 0 24px rgba(90,220,130,0.98))",
     };
 
     const ctx = gsap.context(() => {
