@@ -1,6 +1,7 @@
 "use client";
 
 import { site } from "@/content/site";
+import Logo, { AnqerSymbol } from "@/components/ui/Logo";
 
 export default function Footer() {
   const { footer } = site;
@@ -11,8 +12,8 @@ export default function Footer() {
     >
       <div className="container-fluid grid grid-cols-2 gap-12 md:grid-cols-4">
         <div className="col-span-2 md:col-span-1">
-          <a href="#top" className="text-2xl font-medium tracking-tight">
-            {footer.logo}
+          <a href="#top" aria-label="Anqer Technology — voltar ao topo">
+            <Logo variant="lockup" className="text-[1.35rem]" />
           </a>
         </div>
 
@@ -81,8 +82,11 @@ export default function Footer() {
         aria-hidden
         className="container-fluid mt-16 pb-8 md:mt-24"
       >
-        <div className="text-[20vw] font-medium leading-none tracking-tight text-white/[0.04]">
-          {footer.logo}
+        <div className="flex items-end gap-[2vw]">
+          <AnqerSymbol className="h-[14vw] w-auto opacity-[0.06]" />
+          <div className="text-[18vw] font-bold uppercase leading-[0.85] tracking-tight text-white/[0.04]">
+            {footer.logo}
+          </div>
         </div>
       </div>
 

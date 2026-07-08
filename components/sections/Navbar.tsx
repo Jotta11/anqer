@@ -1,6 +1,7 @@
 "use client";
 
 import { site } from "@/content/site";
+import Logo from "@/components/ui/Logo";
 import SecondaryButton from "@/components/ui/SecondaryButton";
 
 export default function Navbar() {
@@ -13,9 +14,9 @@ export default function Navbar() {
         <a
           href="#hero"
           className="wrapper-navbar logo text-lg font-medium tracking-tight text-white"
-          aria-label="Anqer — voltar ao topo"
+          aria-label="Anqer Technology — voltar ao topo"
         >
-          {site.navbar.logo}
+          <Logo variant="lockup" className="text-[1.15rem] md:text-[1.25rem]" />
         </a>
 
         <nav
