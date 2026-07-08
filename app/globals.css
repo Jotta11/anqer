@@ -1705,3 +1705,122 @@ html.js-loading :is(
   .lab-card-footer { padding: 3.5vw; }
   .lab-cards, .lab-scatter { padding-bottom: 4vw; }
 }
+
+/* =================================================================
+   Pricing — cards Quantara (fundo pontilhado, grayscale + hover reveal)
+   ================================================================= */
+.pricing-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 2vw 2.2vw 2.4vw;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 0.5vw;
+  background-color: #0b0f16;
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.05) 1px,
+    transparent 1px
+  );
+  background-size: 8px 8px;
+  filter: grayscale(100%);
+  will-change: filter;
+}
+.pricing-card-highlighted {
+  border-color: rgba(249, 115, 22, 0.45);
+}
+
+.pricing-card-name {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+  font-size: clamp(1.1rem, 1.4vw, 1.5rem);
+  color: var(--color-white);
+  font-weight: 500;
+}
+.pricing-card-chip {
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-blue);
+  border: 1px solid rgba(249, 115, 22, 0.5);
+  border-radius: 999px;
+  padding: 0.35em 0.9em;
+  white-space: nowrap;
+}
+
+.pricing-card-price {
+  margin-top: 1.6vw;
+  line-height: 1;
+}
+.pricing-price-main {
+  font-size: clamp(2rem, 3.4vw, 3.6rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--color-white);
+}
+.pricing-card-desc {
+  margin-top: 0.8vw;
+  color: var(--color-gray);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.pricing-card-cta {
+  margin-top: 1.8vw;
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 1em 1.5em;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 0.4vw;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--color-white);
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.pricing-card-cta:hover {
+  background: var(--color-blue);
+  border-color: var(--color-blue);
+}
+
+.pricing-card-features {
+  margin-top: 2vw;
+}
+.pricing-features-title {
+  font-size: clamp(1rem, 1.25vw, 1.35rem);
+  color: var(--color-white);
+  margin-bottom: 1vw;
+  font-weight: 500;
+}
+.pricing-card-features ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7vw;
+}
+.pricing-card-features li {
+  position: relative;
+  padding-left: 1.4em;
+  color: var(--color-light-gray);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+.pricing-card-features li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 6px;
+  height: 6px;
+  background: var(--color-blue);
+}
+
+@media (max-width: 768px) {
+  .pricing-card { padding: 6vw 5vw; border-radius: 12px; }
+  .pricing-card-price { margin-top: 5vw; }
+  .pricing-card-cta { margin-top: 6vw; border-radius: 8px; }
+  .pricing-card-features { margin-top: 7vw; }
+  .pricing-card-features ul { gap: 2.5vw; }
+}

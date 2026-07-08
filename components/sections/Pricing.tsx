@@ -1,73 +1,65 @@
 "use client";
 
-import { Check } from "lucide-react";
+import { useRef } from "react";
 import { site } from "@/content/site";
-import MainButton from "@/components/ui/MainButton";
-import SecondaryButton from "@/components/ui/SecondaryButton";
+import { usePricingHover } from "@/components/motion/usePricingHover";
 import { cn } from "@/lib/utils";
 
+/**
+ * Pricing — cards fiéis ao Quantara: fundo pontilhado, preço gigante,
+ * botão full-width mono uppercase, "Principais recursos" com bullets
+ * quadrados. Grayscale por padrão + color reveal no hover (Anim 13).
+ */
 export default function Pricing() {
   const { pricing } = site;
+  const scopeRef = useRef<HTMLElement>(null);
+  usePricingHover(scopeRef);
+
   return (
     <section
       id="pricing"
+      ref={scopeRef}
       data-pricing
-      className="relative w-full overflow-hidden bg-almost-black-2 py-20 md:py-32"
+      className="main-section pricing relative w-full overflow-hidden py-20 md:py-28"
     >
-      <div className="container-fluid">
+      <div className="container-fluid px-[4vw]">
         <p className="eyebrow mb-6">{pricing.eyebrow}</p>
         <h2 className="max-w-5xl text-balance">{pricing.title}</h2>
       </div>
 
-      <div className="container-fluid mt-16 grid grid-cols-1 gap-6 md:mt-24 md:grid-cols-3">
+      <div className="container-fluid mt-14 grid grid-cols-1 gap-6 px-[4vw] md:mt-20 md:grid-cols-3 md:gap-[4vw]">
         {pricing.plans.map((plan) => (
           <article
             key={plan.name}
             data-pricing-card
-            data-highlighted={plan.highlighted ? "true" : undefined}
             className={cn(
-              "group relative flex flex-col gap-8 rounded-2xl border p-8 transition-[filter,border-color] duration-500 ease-expo-out",
-              plan.highlighted
-                ? "border-blue/40 bg-black-gray"
-                : "border-white/[0.06] bg-black-gray grayscale hover:grayscale-0 hover:border-white/20"
+              "body-card-pricing pricing-card",
+              plan.highlighted && "pricing-card-highlighted"
             )}
           >
-            <div className="flex flex-col gap-2">
-              <h3 className="text-2xl md:text-3xl">{plan.name}</h3>
-              <p className="text-sm text-light-gray">{plan.description}</p>
+            <div className="pricing-card-name">
+              {plan.name}
+              {plan.highlighted && (
+                <span className="pricing-card-chip">Mais procurado</span>
+              )}
             </div>
 
-            <div className="text-lg font-medium text-white">{plan.price}</div>
+            <div className="pricing-card-price">
+              <span className="pricing-price-main">{plan.price}</span>
+            </div>
+            <p className="pricing-card-desc">{plan.description}</p>
 
-            <ul className="flex flex-col gap-3">
-              {plan.features.map((feature) => (
-                <li key={feature} className="flex items-start gap-3 text-sm">
-                  <Check
-                    className={cn(
-                      "mt-0.5 h-4 w-4 flex-shrink-0",
-                      plan.highlighted ? "text-blue" : "text-light-gray"
-                    )}
-                    strokeWidth={2}
-                  />
-                  <span className="text-light-gray">{feature}</span>
-                </li>
-              ))}
-            </ul>
+            <a href={plan.cta.href} className="pricing-card-cta">
+              {plan.cta.label}
+            </a>
 
-            <div className="mt-auto pt-4">
-              {plan.highlighted ? (
-                <MainButton
-                  label={plan.cta.label}
-                  href={plan.cta.href}
-                  className="w-full justify-between"
-                />
-              ) : (
-                <SecondaryButton
-                  label={plan.cta.label}
-                  href={plan.cta.href}
-                  className="w-full justify-center"
-                />
-              )}
+            <div className="pricing-card-features">
+              <h4 className="pricing-features-title">Principais recursos</h4>
+              <ul>
+                {plan.features.map((feature) => (
+                  <li key={feature}>{feature}</li>
+                ))}
+              </ul>
             </div>
           </article>
         ))}
