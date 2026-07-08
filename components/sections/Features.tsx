@@ -1,72 +1,113 @@
 "use client";
 
-import { Circle, Square, Triangle } from "lucide-react";
+import { useRef } from "react";
 import { site } from "@/content/site";
+import FeaturesMotion from "@/components/motion/FeaturesMotion";
 
-const iconMap = {
-  circle: Circle,
-  square: Square,
-  triangle: Triangle,
-} as const;
+const ORBIT_SRC =
+  "https://cdn.prod.website-files.com/694f372b123017b1e0a43316/69538ffea86737e86bae05ee_Orbit%201.png";
 
+/**
+ * Features — composição in-flow do Quantara (seção entre product e lab):
+ *
+ *  ┌───────────────────────────────────────────────────────┐
+ *  │ CONFIÁVEL                    ESCALÁVEL                │
+ *  │  (orbits girando,             [card: imagem + título  │
+ *  │   overflow -35vw à esq.)       + descrição]           │
+ *  │                                          AUTOMATIZADO │
+ *  │              [counter circle 0→100]                   │
+ *  └───────────────────────────────────────────────────────┘
+ *
+ *  + marquee de tags no topo.
+ */
 export default function Features() {
   const { features } = site;
+  const scopeRef = useRef<HTMLElement>(null);
+  const [p1, p2, p3] = features.pillars;
+
   return (
     <section
-      id="lab"
+      id="features"
+      ref={scopeRef}
       data-features
-      className="relative w-full overflow-hidden bg-almost-black-2 py-20 md:py-32"
+      className="main-section features-section"
     >
-      <div className="container-fluid">
-        <p className="eyebrow mb-6">{features.eyebrow}</p>
-        <h2 className="max-w-5xl text-balance">{features.title}</h2>
-      </div>
-
       {/* Tag marquee */}
-      <div
-        data-features-marquee
-        className="relative mt-16 w-full overflow-hidden"
-      >
-        <div className="flex w-max gap-3 px-[2vw] py-4">
+      <div data-features-marquee className="features-marquee">
+        <div className="features-marquee-track">
           {[...features.tags, ...features.tags].map((tag, i) => (
-            <span
-              key={`${tag}-${i}`}
-              className="flex-shrink-0 rounded-full border border-white/[0.08] bg-black-gray px-5 py-2 text-xs uppercase tracking-wide text-light-gray"
-            >
+            <span key={`${tag}-${i}`} className="feature-tag">
               {tag}
             </span>
           ))}
         </div>
       </div>
 
-      {/* Pillars */}
-      <div className="container-fluid mt-20 grid grid-cols-1 gap-8 md:mt-32 md:grid-cols-3">
-        {features.pillars.map((p) => {
-          const Icon = iconMap[p.icon as keyof typeof iconMap];
-          return (
-            <div
-              key={p.label}
-              data-feature-pillar
-              className="flex flex-col gap-6 border-t border-white/[0.08] pt-8"
-            >
-              {/* Counter circle (0→100 — animação na Etapa 2) */}
-              <div
-                data-feature-counter
-                className="relative flex h-24 w-24 items-center justify-center rounded-full border border-white/[0.08]"
-              >
-                <Icon className="h-6 w-6 text-blue" strokeWidth={1.5} />
-              </div>
-              <div className="flex flex-col gap-2">
-                <span className="eyebrow text-blue">{p.label}</span>
-                <h4 className="text-balance">{p.title}</h4>
-                <p className="text-pretty text-base text-light-gray">
-                  {p.description}
-                </p>
-              </div>
-            </div>
-          );
-        })}
+      {/* Composição principal (um content-feature, como no Quantara) */}
+      <div className="content-feature">
+        {/* Labels scramble */}
+        <div className="feature-label v1">
+          <span className="scramble">{p1.label}</span>
+        </div>
+        <div className="feature-label v2">
+          <span className="scramble">{p2.label}</span>
+        </div>
+        <div className="feature-label v3">
+          <span className="scramble">{p3.label}</span>
+        </div>
+
+        {/* Orbits (Anim 2) — overflow pra fora da viewport à esquerda */}
+        <div className="wrapper-orbits" aria-hidden>
+          <img className="image-orbit v1" src={ORBIT_SRC} alt="" />
+          <img className="image-orbit v2" src={ORBIT_SRC} alt="" />
+          <img className="image-orbit v3" src={ORBIT_SRC} alt="" />
+          <img className="image-orbit v4" src={ORBIT_SRC} alt="" />
+        </div>
+
+        {/* Texto do pilar 1 (junto aos orbits) */}
+        <div className="feature-caption v1">
+          <h4 className="feature-caption-title">{p1.title}</h4>
+          <p className="feature-caption-desc">{p1.description}</p>
+        </div>
+
+        {/* Card do pilar 2 */}
+        <div className="feature-card">
+          <div className="feature-card-image" aria-hidden />
+          <div className="feature-card-text">
+            <h4 className="feature-card-title">{p2.title}</h4>
+            <p className="feature-card-desc">{p2.description}</p>
+          </div>
+        </div>
+
+        {/* Counter circle (Anim 17 / C4) — pilar 3 */}
+        <div className="feature-counter">
+          <svg
+            className="radial-mask"
+            viewBox="0 0 100 100"
+            aria-hidden
+          >
+            <circle
+              cx="50"
+              cy="50"
+              r="48"
+              fill="none"
+              stroke="rgba(255,255,255,0.55)"
+              strokeWidth="1.4"
+              strokeDasharray="0.6 2.6"
+            />
+          </svg>
+          <div className="circle-empty" aria-hidden />
+          <div className="wrapper-text-counting">
+            <span className="big-text">0</span>
+          </div>
+        </div>
+        <div className="feature-caption v3">
+          <h4 className="feature-caption-title">{p3.title}</h4>
+          <p className="feature-caption-desc">{p3.description}</p>
+        </div>
       </div>
+
+      <FeaturesMotion scope={scopeRef} />
     </section>
   );
 }

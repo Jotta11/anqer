@@ -3,6 +3,7 @@ import Hero from "@/components/sections/Hero";
 import Ecosystem from "@/components/sections/Ecosystem";
 import CorePlatform from "@/components/sections/CorePlatform";
 import Features from "@/components/sections/Features";
+import Lab from "@/components/sections/Lab";
 import Workflow from "@/components/sections/Workflow";
 import Pricing from "@/components/sections/Pricing";
 import Integration from "@/components/sections/Integration";
@@ -18,6 +19,7 @@ export default function Home() {
         <Ecosystem />
         <CorePlatform />
         <Features />
+        <Lab />
         <Workflow />
         <Pricing />
         <Integration />

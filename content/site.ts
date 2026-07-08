@@ -151,6 +151,30 @@ export const site = {
           "Pipelines, integrações e fluxos que liberam o time do trabalho manual.",
       },
     ],
+    // Cena pinada do Lab — "De Manual ⇄ Inteligente" (dashboard que se atualiza)
+    lab: {
+      headline: { pre: "De", strong: "Manual", post: "Inteligente" },
+      bottleneck: {
+        title_strong: "Gargalo",
+        title_dim: "Detectado",
+        before: "TAREFA ATRASADA",
+        after: "TAREFA CONCLUÍDA",
+      },
+      efficiency: {
+        title_strong: "Eficiência",
+        title_dim: "do Processo",
+        chip: "Parcial / Manual",
+        from: 67,
+        to: 99,
+      },
+      pipeline: {
+        rows: ["Sincronização", "Validação", "Relatório"],
+        success: "Sucesso",
+        failed: "Falhou",
+        footer: "PARCIAL",
+      },
+      scatter: { title: "Dispersão" },
+    },
   },
   workflow: {
     eyebrow: "PROCESSO",
