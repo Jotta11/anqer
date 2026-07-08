@@ -1105,6 +1105,13 @@ html.js-loading :is(
 .badge .scramble.secondary {
   color: var(--color-gray);
 }
+/* Primeiro chip do badge ("FLUXO") — pill branca como no Quantara */
+.badge > .scramble.secondary:first-child {
+  background: var(--color-white);
+  color: var(--color-black);
+  border-radius: 999px;
+  padding: 0.35em 0.8em;
+}
 .badge .scramble.v1 {
   color: var(--color-white);
 }
@@ -1216,18 +1223,18 @@ html.js-loading :is(
   position: relative;
   will-change: transform, filter;
 }
-/* Cascata sutil. Overlap calibrado pra TODOS os 4 blocos caberem no
-   container da direita sem vazar: 18 + 3*(18-10) = 42vw, com ~10vw de
-   margem dentro do col v2 (~53vw). */
-.block-image-workflow.v1 { z-index: 4; margin-top: 0; }
-.block-image-workflow.v2 { z-index: 3; margin-left: -10vw; margin-top: -0.5vw; }
-.block-image-workflow.v3 { z-index: 2; margin-left: -10vw; margin-top: -1vw; }
-.block-image-workflow.v4 { z-index: 1; margin-left: -10vw; margin-top: -1.5vw; }
+/* Cascata diagonal ↗ (Quantara): cada bloco seguinte sobe ~4vw.
+   Overlap horizontal -10vw mantém os 4 dentro do col v2 (~53vw). */
+.block-image-workflow.v1 { z-index: 4; margin-top: 6vw; }
+.block-image-workflow.v2 { z-index: 3; margin-left: -10vw; margin-top: 2vw; }
+.block-image-workflow.v3 { z-index: 2; margin-left: -10vw; margin-top: -2vw; }
+.block-image-workflow.v4 { z-index: 1; margin-left: -10vw; margin-top: -6vw; }
 @media (max-width: 768px) {
   .block-image-workflow { width: 32vw; }
-  .block-image-workflow.v2 { margin-left: -16vw; margin-top: -1vw; }
-  .block-image-workflow.v3 { margin-left: -16vw; margin-top: -2vw; }
-  .block-image-workflow.v4 { margin-left: -16vw; margin-top: -3vw; }
+  .block-image-workflow.v1 { margin-top: 9vw; }
+  .block-image-workflow.v2 { margin-left: -16vw; margin-top: 3vw; }
+  .block-image-workflow.v3 { margin-left: -16vw; margin-top: -3vw; }
+  .block-image-workflow.v4 { margin-left: -16vw; margin-top: -9vw; }
 }
 
 /* Iso block base + icon (PNG placeholders from Quantara CDN) */
