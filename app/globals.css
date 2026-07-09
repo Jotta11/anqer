@@ -1824,3 +1824,119 @@ html.js-loading :is(
   .pricing-card-features { margin-top: 7vw; }
   .pricing-card-features ul { gap: 2.5vw; }
 }
+
+/* =================================================================
+   Integration — pinned arc fan-out (Anim 19)
+   ================================================================= */
+.integration-scene {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3vw;
+  position: relative;
+}
+
+.integration-badge {
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.6em 1.2em;
+  border: 1px solid rgba(255, 255, 255, 0);
+  border-radius: 6px;
+  will-change: border-color;
+}
+.integration-badge-strong { color: var(--color-white); font-weight: 600; }
+.integration-badge-dim { color: var(--color-gray); }
+
+.wrapper-icons-integration {
+  position: relative;
+  width: 100%;
+  height: 24vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+}
+
+/* Posições exatas do spec (Anim 19) */
+.icon-integration {
+  position: absolute;
+  will-change: transform, opacity;
+  z-index: 1;
+}
+.icon-integration.v1 { transform: translate3d(-42vw, 10vw, 0) rotate(-20deg); }
+.icon-integration.v2 { transform: translate3d(-28vw, 5vw, 0) rotate(-16deg); }
+.icon-integration.v3 { transform: translate3d(-14vw, 1.5vw, 0) rotate(-8deg); }
+.icon-integration.v4 { transform: translate3d(0, 0, 0); z-index: 2; }
+.icon-integration.v5 { transform: translate3d(42vw, 10vw, 0) rotate(20deg); }
+.icon-integration.v6 { transform: translate3d(28vw, 5vw, 0) rotate(16deg); }
+.icon-integration.v7 { transform: translate3d(14vw, 1.5vw, 0) rotate(8deg); }
+
+.image-icon-integration {
+  width: 6vw;
+  height: 6vw;
+  min-width: 56px;
+  min-height: 56px;
+  border-radius: 18%;
+  background: #101319;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-whitesmoke);
+}
+.icon-integration.v4 .image-icon-integration {
+  width: 7vw;
+  height: 7vw;
+  background: #151a23;
+}
+.image-icon-integration svg {
+  width: 45%;
+  height: 45%;
+}
+
+.integration-line {
+  position: absolute;
+  top: calc(50% + 3.5vw);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 16vw;
+  background: rgba(255, 255, 255, 0.55);
+  z-index: 0;
+}
+
+.wrapper-title-integration {
+  text-align: center;
+  max-width: 46vw;
+}
+.integration-title {
+  font-size: clamp(1.3rem, 1.9vw, 2.1rem);
+  line-height: 1.3;
+  font-weight: 500;
+  color: var(--color-light-gray);
+}
+.integration-title .accent { color: var(--color-blue); }
+.integration-desc {
+  margin-top: 0.8vw;
+  color: var(--color-gray);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 768px) {
+  .integration-scene { gap: 8vw; }
+  .wrapper-icons-integration { height: 70vw; }
+  .icon-integration.v1 { transform: translate3d(-38vw, 22vw, 0) rotate(-20deg); }
+  .icon-integration.v2 { transform: translate3d(-26vw, 11vw, 0) rotate(-16deg); }
+  .icon-integration.v3 { transform: translate3d(-13vw, 3vw, 0) rotate(-8deg); }
+  .icon-integration.v5 { transform: translate3d(38vw, 22vw, 0) rotate(20deg); }
+  .icon-integration.v6 { transform: translate3d(26vw, 11vw, 0) rotate(16deg); }
+  .icon-integration.v7 { transform: translate3d(13vw, 3vw, 0) rotate(8deg); }
+  .image-icon-integration { min-width: 48px; min-height: 48px; }
+  .integration-line { top: calc(50% + 8vw); height: 26vw; }
+  .wrapper-title-integration { max-width: 88vw; padding: 0 4vw; }
+}
