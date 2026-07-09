@@ -5,7 +5,7 @@ import { site } from "@/content/site";
 import FeaturesMotion from "@/components/motion/FeaturesMotion";
 
 const ORBIT_SRC =
-  "https://cdn.prod.website-files.com/694f372b123017b1e0a43316/69538ffea86737e86bae05ee_Orbit%201.png";
+  "/assets/orbits/orbit-1.png";
 
 /**
  * Features — composição in-flow do Quantara (seção entre product e lab):

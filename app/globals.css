@@ -190,7 +190,7 @@
       rgba(249, 115, 22, 0.06),
       transparent 65%
     ),
-    url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/694f839301ce2244c1bdadcf_Clip%20path%20group.png");
+    url("/assets/backgrounds/hero-grid.png");
   background-position: 0 0, 0 0, 0 0, 0 0, 50% 50%;
   background-size: auto, auto, auto, auto, 140% 155%;
   background-repeat: repeat, repeat, repeat, repeat, no-repeat;
@@ -808,7 +808,7 @@ html.js-loading :is(
   width: 52vw;
   height: 38vw;
   position: relative;
-  background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6952a960f6d8b19db76f89a9_extrude-group-ground.png");
+  background-image: url("/assets/isometric-blocks/extrude-group-ground.png");
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: contain;
@@ -844,7 +844,7 @@ html.js-loading :is(
   inset: 0;
   width: 100%;
   height: 100%;
-  background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6952a95f02127800ad2c8e76_extrude-group-block.png");
+  background-image: url("/assets/isometric-blocks/extrude-group-block.png");
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: contain;
@@ -871,25 +871,25 @@ html.js-loading :is(
 .icon-product.v1 {
   width: 7vw;
   height: 7vw;
-  background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6952a95f258b8e73d7666537_bar-chart.png");
+  background-image: url("/assets/icons-3d/bar-chart.png");
   filter: grayscale(0%) brightness(0.5) saturate(0.15) hue-rotate(175deg) drop-shadow(0 0 0px rgba(0,0,0,0));
 }
 .icon-product.v2 {
   width: 7vw;
   height: 7vw;
-  background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6952afed8d4ca6576fcbdedf_linked-services.png");
+  background-image: url("/assets/icons-3d/linked-services.png");
   filter: grayscale(0%) brightness(0.5) saturate(0.15) hue-rotate(0deg) drop-shadow(0 0 0px rgba(0,0,0,0));
 }
 .icon-product.v3 {
   width: 6.5vw;
   height: 6.5vw;
-  background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6952a95f1c8555865fea32ed_auto-renew.png");
+  background-image: url("/assets/icons-3d/auto-renew.png");
   filter: grayscale(0%) brightness(0.5) saturate(0.15) hue-rotate(65deg) drop-shadow(0 0 0px rgba(0,0,0,0));
 }
 .icon-product.v4 {
   width: 7vw;
   height: 7vw;
-  background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6952a95f0b7d0e5d63ed20fb_encrypted.png");
+  background-image: url("/assets/icons-3d/encrypted.png");
   filter: grayscale(0%) brightness(0.5) saturate(0.15) hue-rotate(290deg) drop-shadow(0 0 0px rgba(0,0,0,0));
 }
 /* Todos os ícones começam inativos (dim/grayscale). v1 ativa via JS
@@ -1039,7 +1039,7 @@ html.js-loading :is(
   inset: 0;
   width: 100%;
   height: 100%;
-  background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/69577109649acd1403358c26_Abstract%20Blue%20Gradient.webp");
+  background-image: url("/assets/backgrounds/abstract-gradient.webp");
   background-size: cover;
   background-position: 50% 50%;
   filter: saturate(156%) brightness(30%) hue-rotate(175deg);
@@ -1139,7 +1139,7 @@ html.js-loading :is(
   top: 0;
   bottom: 0;
   width: 1.2vw;
-  background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6957632144c9c6130aa23412_Line%20Dashed.png");
+  background-image: url("/assets/isometric-blocks/line-dashed.png");
   background-position: 0 0;
   background-repeat: repeat-y;
   background-size: contain;
@@ -1197,7 +1197,7 @@ html.js-loading :is(
   flex: 1;
   padding-left: 0;
   background-image:
-    url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/695784b8fedf0b3103908ec2_grid%20bg.png"),
+    url("/assets/backgrounds/grid-bg.png"),
     linear-gradient(180deg, var(--color-black) 80%, transparent);
   background-position: 50%, 0 0;
   background-repeat: no-repeat, repeat;
@@ -1241,7 +1241,7 @@ html.js-loading :is(
 .block-image-workflow-base {
   width: 100%;
   aspect-ratio: 1.5 / 1;
-  background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6957848774c9981589e6f4dd_Extrude%20Workflow.png");
+  background-image: url("/assets/isometric-blocks/extrude-workflow.png");
   background-size: contain;
   background-position: 50% 50%;
   background-repeat: no-repeat;
@@ -1261,19 +1261,19 @@ html.js-loading :is(
   will-change: filter;
 }
 .icon-workflow.v1 {
-  background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/69578490882419fc1e01db35_send-money.png");
+  background-image: url("/assets/icons-3d/send-money.png");
   filter: grayscale(0%) brightness(0.5) saturate(0.15) hue-rotate(175deg) drop-shadow(0 0 0px rgba(0,0,0,0));
 }
 .icon-workflow.v2 {
-  background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6957848775e47cb93705303b_input-circle.png");
+  background-image: url("/assets/icons-3d/input-circle.png");
   filter: grayscale(0%) brightness(0.5) saturate(0.15) hue-rotate(0deg) drop-shadow(0 0 0px rgba(0,0,0,0));
 }
 .icon-workflow.v3 {
-  background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6957848775e47cb93705303f_pie-chart.png");
+  background-image: url("/assets/icons-3d/pie-chart.png");
   filter: grayscale(0%) brightness(0.5) saturate(0.15) hue-rotate(65deg) drop-shadow(0 0 0px rgba(0,0,0,0));
 }
 .icon-workflow.v4 {
-  background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/6957848757af7f496852add3_data.png");
+  background-image: url("/assets/icons-3d/data.png");
   filter: grayscale(0%) brightness(0.5) saturate(0.15) hue-rotate(290deg) drop-shadow(0 0 0px rgba(0,0,0,0));
 }
 @media (max-width: 768px) {
@@ -1967,7 +1967,7 @@ html.js-loading :is(
 .final-cta-bg {
   position: absolute;
   inset: 0;
-  background-image: url("https://cdn.prod.website-files.com/694f372b123017b1e0a43316/69577109649acd1403358c26_Abstract%20Blue%20Gradient.webp");
+  background-image: url("/assets/backgrounds/abstract-gradient.webp");
   background-size: cover;
   background-position: 50% 50%;
   filter: saturate(150%) brightness(45%) hue-rotate(175deg);
