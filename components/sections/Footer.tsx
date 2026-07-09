@@ -1,98 +1,78 @@
 "use client";
 
 import { site } from "@/content/site";
-import Logo, { AnqerSymbol } from "@/components/ui/Logo";
+import { AnqerSymbol } from "@/components/ui/Logo";
 
+/**
+ * Footer claro (reveal) — fixo atrás do conteúdo; o CTA escuro sobe e o
+ * revela (padrão Quantara). O spacer em fluxo garante o scroll extra.
+ */
 export default function Footer() {
   const { footer } = site;
   return (
-    <footer
-      data-footer
-      className="relative w-full overflow-hidden bg-almost-black-2 pt-20 md:pt-32"
-    >
-      <div className="container-fluid grid grid-cols-2 gap-12 md:grid-cols-4">
-        <div className="col-span-2 md:col-span-1">
-          <a href="#top" aria-label="Anqer Technology — voltar ao topo">
-            <Logo variant="lockup" className="text-[1.35rem]" />
-          </a>
-        </div>
+    <>
+      <div className="footer-spacer" aria-hidden />
+      <footer data-footer className="wrapper-footer anchor">
+        <div className="footer-inner">
+          <div className="footer-columns">
+            <div className="footer-col">
+              <h6 className="footer-col-title">
+                {footer.columns.explore.title}
+              </h6>
+              <ul>
+                {footer.columns.explore.links.map((link) => (
+                  <li key={link.href}>
+                    <a href={link.href}>{link.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-        <div className="flex flex-col gap-4">
-          <h6 className="text-sm uppercase tracking-wide text-gray">
-            {footer.columns.explore.title}
-          </h6>
-          <ul className="flex flex-col gap-2">
-            {footer.columns.explore.links.map((link) => (
-              <li key={link.href}>
+            <div className="footer-col">
+              <h6 className="footer-col-title">
+                {footer.columns.utilities.title}
+              </h6>
+              <ul>
+                {footer.columns.utilities.links.map((link) => (
+                  <li key={link.href}>
+                    <a href={link.href}>{link.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="footer-col right">
+              <div className="footer-contact-block">
+                <h6 className="footer-col-title">
+                  {footer.columns.sayHello.title}
+                </h6>
                 <a
-                  href={link.href}
-                  className="text-sm text-light-gray transition-colors hover:text-white"
+                  className="footer-contact-value"
+                  href={`mailto:${footer.columns.sayHello.value}`}
                 >
-                  {link.label}
+                  {footer.columns.sayHello.value}
                 </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="flex flex-col gap-4">
-          <h6 className="text-sm uppercase tracking-wide text-gray">
-            {footer.columns.utilities.title}
-          </h6>
-          <ul className="flex flex-col gap-2">
-            {footer.columns.utilities.links.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  className="text-sm text-light-gray transition-colors hover:text-white"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="flex flex-col gap-6">
-          <div className="flex flex-col gap-2">
-            <h6 className="text-sm uppercase tracking-wide text-gray">
-              {footer.columns.sayHello.title}
-            </h6>
-            <a
-              href={`mailto:${footer.columns.sayHello.value}`}
-              className="text-sm text-light-gray transition-colors hover:text-white"
-            >
-              {footer.columns.sayHello.value}
-            </a>
+              </div>
+              <div className="footer-contact-block">
+                <h6 className="footer-col-title">
+                  {footer.columns.contact.title}
+                </h6>
+                <span className="footer-contact-value">
+                  {footer.columns.contact.value}
+                </span>
+              </div>
+            </div>
           </div>
-          <div className="flex flex-col gap-2">
-            <h6 className="text-sm uppercase tracking-wide text-gray">
-              {footer.columns.contact.title}
-            </h6>
-            <span className="text-sm text-light-gray">
-              {footer.columns.contact.value}
-            </span>
+
+          <div className="footer-bottom">
+            <div className="footer-mega-logo" aria-label="Anqer Technology">
+              <AnqerSymbol className="footer-mega-symbol" />
+              <span className="footer-mega-wordmark">Anqer</span>
+            </div>
+            <div className="footer-copyright">{footer.copyright}</div>
           </div>
         </div>
-      </div>
-
-      {/* Mega-logo (placeholder grande) */}
-      <div
-        data-footer-mega-logo
-        aria-hidden
-        className="container-fluid mt-16 pb-8 md:mt-24"
-      >
-        <div className="flex items-end gap-[2vw]">
-          <AnqerSymbol className="h-[14vw] w-auto opacity-[0.06]" />
-          <div className="text-[18vw] font-bold uppercase leading-[0.85] tracking-tight text-white/[0.04]">
-            {footer.logo}
-          </div>
-        </div>
-      </div>
-
-      <div className="container-fluid border-t border-white/[0.06] py-6 text-xs text-gray">
-        {footer.copyright}
-      </div>
-    </footer>
+      </footer>
+    </>
   );
 }

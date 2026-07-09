@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main>
+      <main className="site-main">
         <Hero />
         <Ecosystem />
         <CorePlatform />
