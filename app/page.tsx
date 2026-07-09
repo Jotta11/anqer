@@ -9,6 +9,7 @@ import Pricing from "@/components/sections/Pricing";
 import Integration from "@/components/sections/Integration";
 import FinalCTA from "@/components/sections/FinalCTA";
 import Footer from "@/components/sections/Footer";
+import GlobalReveal from "@/components/motion/GlobalReveal";
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
         <Pricing />
         <Integration />
         <FinalCTA />
+        <GlobalReveal />
       </main>
       <Footer />
     </>

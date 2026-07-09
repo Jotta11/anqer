@@ -2155,3 +2155,62 @@ html.js-loading :is(
   .footer-mega-symbol { height: 14vw; }
   .footer-mega-wordmark { font-size: 18vw; }
 }
+
+/* =================================================================
+   Passada mobile (390px) — ajustes de colisão e layout pinado
+   ================================================================= */
+@media (max-width: 768px) {
+  /* Hero: label do meio (PRECISÃO) sobe pra não colidir com a headline */
+  .block-content-hero.v2 {
+    align-items: flex-start;
+    padding-top: 2vw;
+  }
+
+  /* Core Platform: título limpa a navbar; grid de "+" some;
+     colunas empilham com o cycle legível */
+  .title-product {
+    height: auto;
+    padding-top: 16vw;
+    flex-flow: column;
+    gap: 4vw;
+  }
+  .block-title-product.v1 { width: 100%; padding-right: 0; }
+  .block-animation { display: none; }
+  .wrapper-scramble-product { padding-top: 0; }
+  .block-title-product.v2 { align-items: flex-start; min-height: 3.2em; }
+  .subtitle-cycling { right: auto; left: 0; align-items: flex-start; text-align: left; }
+
+  .content-product { padding-bottom: 8vw; gap: 6vw; }
+  .wrapper-content-product.v1 {
+    flex-flow: row;
+    justify-content: flex-start;
+    padding-left: 0;
+    flex: none;
+  }
+  .block-logo-circle-product { flex-flow: row; }
+  .circle-logo { width: 14px; height: 1px; min-height: 1px; align-self: center; }
+  .wrapper-content-product.v3 {
+    flex: none;
+    align-items: flex-start;
+    padding-right: 0;
+    gap: 4vw;
+  }
+  .block-content-title-product {
+    justify-content: flex-start;
+    min-height: 12vw;
+    width: 100%;
+  }
+  .block-content-title-product .medium-big-text { right: auto; left: 0; }
+  .block-content-desc-products { justify-content: flex-start; }
+  .block-content-desc-product { align-items: flex-start; }
+  .wrapper-content-desc-product .scramble { right: auto; left: 0; align-items: flex-start; text-align: left; }
+
+  /* Lab: headline limpa a navbar */
+  .lab-scene { padding-top: 22vw; }
+}
+
+@media (max-width: 768px) {
+  .block-title-product.v2 { min-height: 6em; }
+  .block-content-desc-products { gap: 10vw; width: 100%; }
+  .block-content-desc-product { min-width: 36vw; min-height: 3em; }
+}

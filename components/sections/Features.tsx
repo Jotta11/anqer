@@ -65,13 +65,13 @@ export default function Features() {
         </div>
 
         {/* Texto do pilar 1 (junto aos orbits) */}
-        <div className="feature-caption v1">
+        <div className="feature-caption v1" data-reveal>
           <h4 className="feature-caption-title">{p1.title}</h4>
           <p className="feature-caption-desc">{p1.description}</p>
         </div>
 
         {/* Card do pilar 2 */}
-        <div className="feature-card">
+        <div className="feature-card" data-reveal>
           <div className="feature-card-image" aria-hidden />
           <div className="feature-card-text">
             <h4 className="feature-card-title">{p2.title}</h4>

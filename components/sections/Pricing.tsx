@@ -22,7 +22,7 @@ export default function Pricing() {
       data-pricing
       className="main-section pricing relative w-full overflow-hidden py-20 md:py-28"
     >
-      <div className="container-fluid px-[4vw]">
+      <div className="container-fluid px-[4vw]" data-reveal>
         <p className="eyebrow mb-6">{pricing.eyebrow}</p>
         <h2 className="max-w-5xl text-balance">{pricing.title}</h2>
       </div>
