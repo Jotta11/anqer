@@ -1,30 +1,21 @@
 "use client";
 
 import { useRef } from "react";
-import {
-  Circle,
-  Square,
-  Triangle,
-  Hexagon,
-  Diamond,
-  Shield,
-  Pentagon,
-} from "lucide-react";
 import { site } from "@/content/site";
+import { AnqerSymbol } from "@/components/ui/Logo";
 import IntegrationMotion from "@/components/motion/IntegrationMotion";
 
-const iconMap = {
-  circle: Circle,
-  square: Square,
-  triangle: Triangle,
-  hexagon: Hexagon,
-  diamond: Diamond,
-  shield: Shield,
-  pentagon: Pentagon,
-} as const;
-
-// Ordem do arco: v4 é o centro (z-2). Índices dos módulos → v1..v7.
-const ARC_ORDER = [0, 1, 2, 3, 4, 5, 6];
+// Símbolo da Anqer em variações de cor — v4 (centro, frente do baralho)
+// fica com o laranja oficial da marca.
+const SYMBOL_COLORS = [
+  "#3B82F6", // v1 azul
+  "#8B5CF6", // v2 roxo
+  "#22C55E", // v3 verde
+  "#F97316", // v4 laranja (marca)
+  "#06B6D4", // v5 ciano
+  "#EC4899", // v6 rosa
+  "#EAB308", // v7 âmbar
+];
 
 /**
  * Integration — seção pinada (tracks integration, 600vh):
@@ -56,11 +47,10 @@ export default function Integration() {
               </span>
             </div>
 
-            {/* Arc fan-out */}
+            {/* Arc fan-out (baralho: todos partem de trás do tile central) */}
             <div className="wrapper-icons-integration" aria-hidden>
-              {ARC_ORDER.map((modIdx, i) => {
-                const mod = integration.modules[modIdx];
-                const Icon = iconMap[mod.icon as keyof typeof iconMap];
+              {SYMBOL_COLORS.map((color, i) => {
+                const mod = integration.modules[i];
                 return (
                   <div
                     key={mod.name}
@@ -68,7 +58,7 @@ export default function Integration() {
                     aria-label={mod.name}
                   >
                     <div className="image-icon-integration">
-                      <Icon strokeWidth={1.6} />
+                      <AnqerSymbol color={color} />
                     </div>
                   </div>
                 );

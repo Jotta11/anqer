@@ -1894,8 +1894,8 @@ html.js-loading :is(
   background: #151a23;
 }
 .image-icon-integration svg {
-  width: 45%;
-  height: 45%;
+  width: 52%;
+  height: auto;
 }
 
 .integration-line {

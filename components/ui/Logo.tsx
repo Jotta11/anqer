@@ -5,7 +5,13 @@ import { cn } from "@/lib/utils";
  * Símbolo "A" — conceito 01 "direção e evolução": perna esquerda diagonal
  * longa + perna direita curta destacada, ambas chanfradas, em laranja.
  */
-export function AnqerSymbol({ className }: { className?: string }) {
+export function AnqerSymbol({
+  className,
+  color = "#F97316",
+}: {
+  className?: string;
+  color?: string;
+}) {
   return (
     <svg
       viewBox="0 0 116 100"
@@ -14,8 +20,8 @@ export function AnqerSymbol({ className }: { className?: string }) {
       className={className}
       aria-hidden
     >
-      <path d="M55 6 L88 1 L30 96 L0 96 Z" fill="#F97316" />
-      <path d="M64 54 L84 46 L115 98 L86 98 Z" fill="#F97316" />
+      <path d="M55 6 L88 1 L30 96 L0 96 Z" fill={color} />
+      <path d="M64 54 L84 46 L115 98 L86 98 Z" fill={color} />
     </svg>
   );
 }
